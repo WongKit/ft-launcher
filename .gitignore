@@ -1,0 +1,9 @@
+# User-specific files
+*.user
+
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio 2015/2017 cache/options directory
+.vs/

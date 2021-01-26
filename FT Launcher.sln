@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30406.217
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FT Launcher", "FT Launcher.csproj", "{880016CF-1FBC-4183-A930-87C0EF16C1C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2CC0FB47-F24A-43CC-8ABB-B2F02C075458}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{880016CF-1FBC-4183-A930-87C0EF16C1C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{880016CF-1FBC-4183-A930-87C0EF16C1C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{880016CF-1FBC-4183-A930-87C0EF16C1C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{880016CF-1FBC-4183-A930-87C0EF16C1C2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {65BE9D41-0C04-4C91-89FA-454E9B5BB13F}
+	EndGlobalSection
+EndGlobal
