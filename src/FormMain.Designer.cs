@@ -120,7 +120,7 @@
             this.textBoxLog.Name = "textBoxLog";
             this.textBoxLog.ReadOnly = true;
             this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxLog.Size = new System.Drawing.Size(619, 288);
+            this.textBoxLog.Size = new System.Drawing.Size(615, 288);
             this.textBoxLog.TabIndex = 0;
             this.textBoxLog.WordWrap = false;
             // 

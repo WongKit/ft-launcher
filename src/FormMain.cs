@@ -35,18 +35,23 @@ namespace FT_Launcher {
         private void buttonLaunch_Click(object sender, EventArgs e) {
             panelNews.Visible = false;
             panelLog.Visible = true;
+            buttonLaunch.Enabled = false;
 
             string applicationPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            patcher.CheckAndUpdateFiles(applicationPath, "http://localhost/updater/");
+            string updateUrl = ConfigurationManager.AppSettings.Get("updateUrl");
+            patcher.CheckAndUpdateFiles(applicationPath, updateUrl);
+            buttonLaunch.Enabled = true;
         }
 
         private void buttonCreateChecksum_Click(object sender, EventArgs e) {
             panelNews.Visible = false;
             panelLog.Visible = true;
 
+            buttonCreateChecksum.Enabled = false;
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK) {
                 patcher.CreateChecksumList(folderBrowserDialog.SelectedPath);
             }
+            buttonCreateChecksum.Enabled = true;
         }
 
         private void FormMain_Load(object sender, EventArgs e) {

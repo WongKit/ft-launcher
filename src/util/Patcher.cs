@@ -32,7 +32,7 @@ class Patcher {
             }
         }
 
-        string client = targetDirectory + "FT_Client_Patched.exe";
+        string client = targetDirectory + "\\FT_Client_Patched.exe";
         if (File.Exists(client)) {
             Logger.Write("Starting application");
             System.Diagnostics.Process.Start(client, "0");
