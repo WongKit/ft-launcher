@@ -53,6 +53,7 @@ namespace FT_Launcher {
             Logger.TextBoxLog = textBoxLog;
             buttonCreateChecksum.Visible = Control.ModifierKeys == Keys.Shift;
             webBrowserNews.Navigate(ConfigurationManager.AppSettings.Get("newsUrl"));
+            webBrowserNews.Refresh(WebBrowserRefreshOption.Completely);
             panelNews.Visible = true;
             panelLog.Visible = false;
         }

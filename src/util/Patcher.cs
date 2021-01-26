@@ -98,6 +98,7 @@ class Patcher {
     private void DownloadFiles(string directory, string downloadUrl, List<Checksum> checksums) {
         Logger.Write("Starting downloads...");
         using (var webClient = new WebClient()) {
+            webClient.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
 
             foreach (Checksum checksum in checksums) {
                 string targetFile = directory + checksum.path;
@@ -135,6 +136,8 @@ class Patcher {
     private List<Checksum> ReadChecksumFile(string checksumFile) {
         List<Checksum> checksums = new List<Checksum>();
         using (var webClient = new WebClient()) {
+            webClient.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
+
             string content = webClient.DownloadString(checksumFile);
 
             using (StringReader stringReader = new StringReader(content)) {
