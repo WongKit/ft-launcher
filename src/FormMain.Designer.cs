@@ -41,6 +41,7 @@
             this.labelNews = new System.Windows.Forms.Label();
             this.labelLog = new System.Windows.Forms.Label();
             this.labelAbout = new System.Windows.Forms.Label();
+            this.panelAbout = new System.Windows.Forms.Panel();
             this.panelNews.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureActiveTab)).BeginInit();
@@ -50,7 +51,7 @@
             // 
             // panelNews
             // 
-            this.panelNews.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelNews.BackColor = System.Drawing.Color.White;
             this.panelNews.Controls.Add(this.webBrowserNews);
             this.panelNews.Location = new System.Drawing.Point(30, 132);
             this.panelNews.Name = "panelNews";
@@ -66,7 +67,7 @@
             this.webBrowserNews.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowserNews.Name = "webBrowserNews";
             this.webBrowserNews.ScriptErrorsSuppressed = true;
-            this.webBrowserNews.Size = new System.Drawing.Size(619, 288);
+            this.webBrowserNews.Size = new System.Drawing.Size(621, 290);
             this.webBrowserNews.TabIndex = 1;
             this.webBrowserNews.Url = new System.Uri("", System.UriKind.Relative);
             // 
@@ -104,7 +105,7 @@
             // 
             // panelLog
             // 
-            this.panelLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelLog.BackColor = System.Drawing.Color.White;
             this.panelLog.Controls.Add(this.textBoxLog);
             this.panelLog.Location = new System.Drawing.Point(30, 132);
             this.panelLog.Name = "panelLog";
@@ -130,7 +131,7 @@
             // 
             // buttonCreateChecksum
             // 
-            this.buttonCreateChecksum.Location = new System.Drawing.Point(539, 92);
+            this.buttonCreateChecksum.Location = new System.Drawing.Point(459, 429);
             this.buttonCreateChecksum.Name = "buttonCreateChecksum";
             this.buttonCreateChecksum.Size = new System.Drawing.Size(111, 23);
             this.buttonCreateChecksum.TabIndex = 6;
@@ -142,7 +143,7 @@
             // 
             this.progressBar.Location = new System.Drawing.Point(31, 429);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(539, 23);
+            this.progressBar.Size = new System.Drawing.Size(422, 23);
             this.progressBar.TabIndex = 7;
             // 
             // errorProvider1
@@ -152,37 +153,49 @@
             // labelNews
             // 
             this.labelNews.BackColor = System.Drawing.Color.White;
-            this.labelNews.Location = new System.Drawing.Point(38, 93);
+            this.labelNews.Location = new System.Drawing.Point(38, 94);
             this.labelNews.Name = "labelNews";
-            this.labelNews.Size = new System.Drawing.Size(64, 27);
+            this.labelNews.Size = new System.Drawing.Size(68, 26);
             this.labelNews.TabIndex = 8;
             this.labelNews.Text = "News";
             this.labelNews.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelNews.Click += new System.EventHandler(this.TabClick);
             // 
             // labelLog
             // 
             this.labelLog.BackColor = System.Drawing.Color.Transparent;
-            this.labelLog.Location = new System.Drawing.Point(122, 93);
+            this.labelLog.Location = new System.Drawing.Point(120, 94);
             this.labelLog.Name = "labelLog";
-            this.labelLog.Size = new System.Drawing.Size(64, 27);
+            this.labelLog.Size = new System.Drawing.Size(68, 26);
             this.labelLog.TabIndex = 9;
             this.labelLog.Text = "Log";
             this.labelLog.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelLog.Click += new System.EventHandler(this.TabClick);
             // 
             // labelAbout
             // 
             this.labelAbout.BackColor = System.Drawing.Color.Transparent;
-            this.labelAbout.Location = new System.Drawing.Point(203, 93);
+            this.labelAbout.Location = new System.Drawing.Point(201, 94);
             this.labelAbout.Name = "labelAbout";
-            this.labelAbout.Size = new System.Drawing.Size(64, 27);
+            this.labelAbout.Size = new System.Drawing.Size(68, 26);
             this.labelAbout.TabIndex = 10;
             this.labelAbout.Text = "About";
             this.labelAbout.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelAbout.Click += new System.EventHandler(this.TabClick);
+            // 
+            // panelAbout
+            // 
+            this.panelAbout.BackColor = System.Drawing.Color.White;
+            this.panelAbout.Location = new System.Drawing.Point(30, 132);
+            this.panelAbout.Name = "panelAbout";
+            this.panelAbout.Size = new System.Drawing.Size(621, 290);
+            this.panelAbout.TabIndex = 11;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(680, 480);
             this.Controls.Add(this.labelAbout);
@@ -193,13 +206,14 @@
             this.Controls.Add(this.pictureActiveTab);
             this.Controls.Add(this.pictureClose);
             this.Controls.Add(this.buttonLaunch);
-            this.Controls.Add(this.panelLog);
+            this.Controls.Add(this.panelAbout);
             this.Controls.Add(this.panelNews);
+            this.Controls.Add(this.panelLog);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FT Launcher";
+            this.Text = "Fantasy Tennis Launcher";
             this.TransparencyKey = System.Drawing.Color.Fuchsia;
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormMain_MouseDown);
@@ -230,6 +244,7 @@
         private System.Windows.Forms.Label labelNews;
         private System.Windows.Forms.Label labelLog;
         private System.Windows.Forms.Label labelAbout;
+        private System.Windows.Forms.Panel panelAbout;
     }
 }
 

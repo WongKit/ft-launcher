@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -33,9 +34,8 @@ namespace FT_Launcher {
         }
 
         private void buttonLaunch_Click(object sender, EventArgs e) {
-            panelNews.Visible = false;
-            panelLog.Visible = true;
             buttonLaunch.Enabled = false;
+            TabClick(labelLog, null);
 
             string applicationPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             string updateUrl = ConfigurationManager.AppSettings.Get("updateUrl");
@@ -44,23 +44,51 @@ namespace FT_Launcher {
         }
 
         private void buttonCreateChecksum_Click(object sender, EventArgs e) {
-            panelNews.Visible = false;
-            panelLog.Visible = true;
-
             buttonCreateChecksum.Enabled = false;
+            TabClick(labelLog, null);
+
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK) {
                 patcher.CreateChecksumList(folderBrowserDialog.SelectedPath);
             }
             buttonCreateChecksum.Enabled = true;
         }
 
+        private void TabClick(object sender, EventArgs e) {
+            Label label = (Label)sender;
+
+            panelNews.Visible = false;
+            panelLog.Visible = false;
+            panelAbout.Visible = false;
+
+            labelNews.BackColor = Color.Transparent;
+            labelLog.BackColor = Color.Transparent;
+            labelAbout.BackColor = Color.Transparent;
+            label.BackColor = Color.White;
+
+            Point point = new Point(label.Location.X - 8, pictureActiveTab.Location.Y);
+            pictureActiveTab.Location = point;
+
+            if (label == labelNews) {
+                panelNews.Visible = true;
+            } else if (label == labelLog) {
+                panelLog.Visible = true;
+            } else if (label == labelAbout) {
+                panelAbout.Visible = true;
+            }
+        }
+
         private void FormMain_Load(object sender, EventArgs e) {
             Logger.TextBoxLog = textBoxLog;
-            buttonCreateChecksum.Visible = Control.ModifierKeys == Keys.Shift;
+
+            if (ModifierKeys == Keys.Shift) {
+            } else {
+                buttonCreateChecksum.Visible = false;
+                progressBar.Width = 539;
+            }
+
+            TabClick(labelNews, null);
             webBrowserNews.Navigate(ConfigurationManager.AppSettings.Get("newsUrl"));
             webBrowserNews.Refresh(WebBrowserRefreshOption.Completely);
-            panelNews.Visible = true;
-            panelLog.Visible = false;
         }
     }
 }
