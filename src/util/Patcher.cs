@@ -43,6 +43,10 @@ class Patcher {
 
     public void CreateChecksumList(string directory) {
         string checksumFile = directory + "/files.md5";
+        if (File.Exists(checksumFile)) {
+            File.Delete(checksumFile);
+        }
+
         List<Checksum> checksums = new List<Checksum>();
         GetChecksums(directory, directory, checksums);
         

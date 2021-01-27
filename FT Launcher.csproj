@@ -7,7 +7,7 @@
     <ProjectGuid>{880016CF-1FBC-4183-A930-87C0EF16C1C2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>FT_Launcher</RootNamespace>
-    <AssemblyName>FT Launcher</AssemblyName>
+    <AssemblyName>FT_Launcher</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,7 +41,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
