@@ -17,7 +17,7 @@ class Patcher {
         List<Checksum> checksums = ReadChecksumFile(downloadUrl + "files.md5");
 
         if (checksums.Count == 0) {
-            Logger.Error("Could not contact update server");
+            throw new Exception("Could not contact update server");
 
         } else {
             Logger.Write("Checking for updates...");
@@ -31,14 +31,6 @@ class Patcher {
                 DownloadFiles(targetDirectory, downloadUrl, different);
             }
         }
-
-        string client = targetDirectory + "\\FT_Client_Patched.exe";
-        if (File.Exists(client)) {
-            Logger.Write("Starting application");
-            System.Diagnostics.Process.Start(client, "0");
-        }
-
-        Logger.Write("All done!");
     }
 
     public void CreateChecksumList(string directory) {
@@ -55,6 +47,15 @@ class Patcher {
             streamWriter.WriteLine(checksum.path + sep + checksum.size + sep + checksum.hash);
         }
         streamWriter.Close();
+    }
+
+    public void RunApplication(string launchApplicationPath, string arguments) {
+        if (!File.Exists(launchApplicationPath)) {
+            throw new Exception("Application to launch does not exist. " + launchApplicationPath);
+        } else { 
+            Logger.Write("Starting application");
+            System.Diagnostics.Process.Start(launchApplicationPath, arguments);
+        }
     }
 
     private List<Checksum> CompareChecksumWithLocal(string targetDirectory, List<Checksum> checksums) {
@@ -114,7 +115,15 @@ class Patcher {
                 }
 
                 if (File.Exists(targetFile)) {
-                    File.Move(targetFile, backupFile);
+                    try {
+                        File.Delete(targetFile);
+                    } catch (Exception) {
+                        try {
+                            File.Move(targetFile, backupFile);
+                        } catch (Exception) {
+                            throw new Exception("Could not patch file \"" + checksum.path + "\". Maybe it is still in use");
+                        }
+                    }
                 }
 
                 Logger.Write("Downloading " + checksum.path + "...");
@@ -122,18 +131,27 @@ class Patcher {
                 if (!Directory.Exists(parentDirectory)) {
                     Directory.CreateDirectory(parentDirectory);
                 }
-                webClient.DownloadFile(sourceFile, targetFile);
+                try {
+                    webClient.DownloadFile(sourceFile, targetFile);
+                } catch (WebException ex) {
+                    throw new Exception("Could not download file \"" + checksum.path + "\". " + ex.Message);
+                }
+                
             }
         }
         Logger.Write("Downloads finished");
     }
 
     private string GetMd5Hash(string filepath) {
-        using (var md5 = MD5.Create()) {
-            using (var stream = File.OpenRead(filepath)) {
-                var hash = md5.ComputeHash(stream);
-                return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+        try {
+            using (var md5 = MD5.Create()) {
+                using (var stream = File.OpenRead(filepath)) {
+                    var hash = md5.ComputeHash(stream);
+                    return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+                }
             }
+        } catch (Exception ex) {
+            throw new Exception("Could not create hash for " + filepath + " " + ex.Message);
         }
     }
 
@@ -142,7 +160,13 @@ class Patcher {
         using (var webClient = new WebClient()) {
             webClient.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
 
-            string content = webClient.DownloadString(checksumFile);
+            string content;
+
+            try { 
+                content = webClient.DownloadString(checksumFile);
+            } catch (Exception) {
+                throw new WebException("Could not get remote checksum file: " + checksumFile);
+            }
 
             using (StringReader stringReader = new StringReader(content)) {
                 string line = string.Empty;

@@ -79,7 +79,7 @@
             this.buttonLaunch.TabIndex = 2;
             this.buttonLaunch.Text = "Launch";
             this.buttonLaunch.UseVisualStyleBackColor = true;
-            this.buttonLaunch.Click += new System.EventHandler(this.buttonLaunch_Click);
+            this.buttonLaunch.Click += new System.EventHandler(this.ButtonLaunch_Click);
             // 
             // pictureClose
             // 
@@ -90,7 +90,7 @@
             this.pictureClose.Size = new System.Drawing.Size(20, 20);
             this.pictureClose.TabIndex = 3;
             this.pictureClose.TabStop = false;
-            this.pictureClose.Click += new System.EventHandler(this.pictureClose_Click);
+            this.pictureClose.Click += new System.EventHandler(this.PictureClose_Click);
             // 
             // pictureActiveTab
             // 
@@ -137,7 +137,7 @@
             this.buttonCreateChecksum.TabIndex = 6;
             this.buttonCreateChecksum.Text = "Create Checksum";
             this.buttonCreateChecksum.UseVisualStyleBackColor = true;
-            this.buttonCreateChecksum.Click += new System.EventHandler(this.buttonCreateChecksum_Click);
+            this.buttonCreateChecksum.Click += new System.EventHandler(this.ButtonCreateChecksum_Click);
             // 
             // progressBar
             // 
@@ -213,7 +213,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Fantasy Tennis Launcher";
+            this.Text = "FT Launcher";
             this.TransparencyKey = System.Drawing.Color.Fuchsia;
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormMain_MouseDown);

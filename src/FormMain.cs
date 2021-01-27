@@ -11,9 +11,9 @@ namespace FT_Launcher {
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
-        [DllImportAttribute("user32.dll")]
+        [DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [DllImportAttribute("user32.dll")]
+        [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
         private Patcher patcher = new Patcher();
@@ -22,6 +22,60 @@ namespace FT_Launcher {
             InitializeComponent();
         }
 
+        private void ButtonCreateChecksum_Click(object sender, EventArgs e) {
+            buttonCreateChecksum.Enabled = false;
+            TabClick(labelLog, null);
+
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK) {
+                try {
+                    Logger.Write("Building checksum file in target directory...");
+                    patcher.CreateChecksumList(folderBrowserDialog.SelectedPath);
+                } catch (Exception ex) {
+                    Logger.Error(ex.Message);
+                }
+            }
+            Logger.Write("Building checksum file completed");
+            buttonCreateChecksum.Enabled = true;
+        }
+
+        private void ButtonLaunch_Click(object sender, EventArgs e) {
+            buttonLaunch.Enabled = false;
+            TabClick(labelLog, null);
+
+            try {
+                Logger.Write("Checking for updates and launching application...");
+                string applicationPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                string updateUrl = GetSetting("updateUrl");
+                patcher.CheckAndUpdateFiles(applicationPath, updateUrl);
+
+                string launchFile = GetSetting("launchFile", "");
+                string arguments = GetSetting("launchFileArgs", "");
+                if (launchFile != "") {
+                    patcher.RunApplication(applicationPath + "\\" + launchFile, arguments);
+                    Application.Exit();
+                }
+
+            } catch (Exception ex) {
+                Logger.Error(ex.Message);
+            }
+            buttonLaunch.Enabled = true;
+        }
+
+        private void FormMain_Load(object sender, EventArgs e) {
+            Logger.TextBoxLog = textBoxLog;
+
+            if (ModifierKeys == Keys.Shift) {
+            } else {
+                buttonCreateChecksum.Visible = false;
+                progressBar.Width = 539;
+            }
+
+            TabClick(labelNews, null);
+            webBrowserNews.Navigate(GetSetting("newsUrl", "about:blank"));
+            webBrowserNews.Refresh(WebBrowserRefreshOption.Completely);
+        }
+
+
         private void FormMain_MouseDown(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Left) {
                 ReleaseCapture();
@@ -29,28 +83,25 @@ namespace FT_Launcher {
             }
         }
 
-        private void pictureClose_Click(object sender, EventArgs e) {
-            Close();
-        }
-
-        private void buttonLaunch_Click(object sender, EventArgs e) {
-            buttonLaunch.Enabled = false;
-            TabClick(labelLog, null);
-
-            string applicationPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            string updateUrl = ConfigurationManager.AppSettings.Get("updateUrl");
-            patcher.CheckAndUpdateFiles(applicationPath, updateUrl);
-            buttonLaunch.Enabled = true;
-        }
-
-        private void buttonCreateChecksum_Click(object sender, EventArgs e) {
-            buttonCreateChecksum.Enabled = false;
-            TabClick(labelLog, null);
-
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK) {
-                patcher.CreateChecksumList(folderBrowserDialog.SelectedPath);
+        private string GetSetting(string key) {
+            string value = GetSetting(key, null);
+            if (value == null) {
+                throw new Exception("Mandatory setting \"" + key + "\" not found");
+            } else {
+                return value;
             }
-            buttonCreateChecksum.Enabled = true;
+        }
+
+        private string GetSetting(string key, string def) {
+            if (ConfigurationManager.AppSettings[key] != null) {
+                return ConfigurationManager.AppSettings[key];
+            } else {
+                return def;
+            }
+        }
+
+        private void PictureClose_Click(object sender, EventArgs e) {
+            Close();
         }
 
         private void TabClick(object sender, EventArgs e) {
@@ -75,20 +126,6 @@ namespace FT_Launcher {
             } else if (label == labelAbout) {
                 panelAbout.Visible = true;
             }
-        }
-
-        private void FormMain_Load(object sender, EventArgs e) {
-            Logger.TextBoxLog = textBoxLog;
-
-            if (ModifierKeys == Keys.Shift) {
-            } else {
-                buttonCreateChecksum.Visible = false;
-                progressBar.Width = 539;
-            }
-
-            TabClick(labelNews, null);
-            webBrowserNews.Navigate(ConfigurationManager.AppSettings.Get("newsUrl"));
-            webBrowserNews.Refresh(WebBrowserRefreshOption.Completely);
         }
     }
 }
