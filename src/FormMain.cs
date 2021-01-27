@@ -30,11 +30,11 @@ namespace FT_Launcher {
                 try {
                     Logger.Write("Building checksum file in target directory...");
                     patcher.CreateChecksumList(folderBrowserDialog.SelectedPath);
+                    Logger.Write("Building checksum file completed");
                 } catch (Exception ex) {
                     Logger.Error(ex.Message);
                 }
             }
-            Logger.Write("Building checksum file completed");
             buttonCreateChecksum.Enabled = true;
         }
 
