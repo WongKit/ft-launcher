@@ -40,7 +40,6 @@ namespace FT_Launcher {
 
         private void ButtonLaunch_Click(object sender, EventArgs e) {
             buttonLaunch.Enabled = false;
-            TabClick(labelLog, null);
 
             try {
                 Logger.Write("Checking for updates and launching application...");
@@ -57,6 +56,7 @@ namespace FT_Launcher {
 
             } catch (Exception ex) {
                 Logger.Error(ex.Message);
+                TabClick(labelLog, null);
             }
             buttonLaunch.Enabled = true;
         }
@@ -124,6 +124,8 @@ namespace FT_Launcher {
                 panelNews.Visible = true;
             } else if (label == labelLog) {
                 panelLog.Visible = true;
+                textBoxLog.SelectionStart = textBoxLog.TextLength;
+                textBoxLog.ScrollToCaret();
             } else if (label == labelAbout) {
                 panelAbout.Visible = true;
             }
