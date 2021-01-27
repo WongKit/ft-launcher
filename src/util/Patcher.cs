@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 
 class Patcher {
-
     private const char sep = ';';
-
-    public Patcher() {
-
-    }
 
     public void CheckAndUpdateFiles(string targetDirectory, string downloadUrl) {
         Logger.Write("Downloading update file...");
@@ -61,6 +57,10 @@ class Patcher {
     private List<Checksum> CompareChecksumWithLocal(string targetDirectory, List<Checksum> checksums) {
         List<Checksum> different = new List<Checksum>();
 
+        Logger.Progress(0);
+        long totalSize = checksums.Sum(c => c.size);
+        long checkedSize = 0;
+
         foreach (Checksum checksum in checksums) {
             string targetFile = targetDirectory + checksum.path;
             bool requiresDownload = false;
@@ -81,27 +81,21 @@ class Patcher {
             if (requiresDownload) {
                 different.Add(checksum);
             }
+
+            checkedSize += checksum.size;
+            Logger.Progress(checkedSize, totalSize);
         }
 
         return different;
     }
 
-    private void GetChecksums(string rootDirectory, string directory, List<Checksum> checksums) {
-        foreach (string file in Directory.GetFiles(directory)) {
-            Checksum checksum = new Checksum();
-            checksum.path = file.Replace(rootDirectory, "");
-            checksum.size = new FileInfo(file).Length;
-            checksum.hash = GetMd5Hash(file);
-            checksums.Add(checksum);
-            Logger.Write("Generating checksum for " + checksum.path);
-        }
-        foreach (string dir in Directory.GetDirectories(directory)) {
-            GetChecksums(rootDirectory, dir, checksums);
-        }
-    }
-
     private void DownloadFiles(string directory, string downloadUrl, List<Checksum> checksums) {
         Logger.Write("Starting downloads...");
+
+        Logger.Progress(0);
+        long totalSize = checksums.Sum(c => c.size);
+        long processedSize = 0;
+
         using (var webClient = new WebClient()) {
             webClient.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
 
@@ -133,13 +127,31 @@ class Patcher {
                 }
                 try {
                     webClient.DownloadFile(sourceFile, targetFile);
+
+                    processedSize += checksum.size;
+                    Logger.Progress(processedSize, totalSize);
+
                 } catch (WebException ex) {
                     throw new Exception("Could not download file \"" + checksum.path + "\". " + ex.Message);
                 }
-                
+
             }
         }
         Logger.Write("Downloads finished");
+    }
+
+    private void GetChecksums(string rootDirectory, string directory, List<Checksum> checksums) {
+        foreach (string file in Directory.GetFiles(directory)) {
+            Checksum checksum = new Checksum();
+            checksum.path = file.Replace(rootDirectory, "");
+            checksum.size = new FileInfo(file).Length;
+            checksum.hash = GetMd5Hash(file);
+            checksums.Add(checksum);
+            Logger.Write("Generating checksum for " + checksum.path);
+        }
+        foreach (string dir in Directory.GetDirectories(directory)) {
+            GetChecksums(rootDirectory, dir, checksums);
+        }
     }
 
     private string GetMd5Hash(string filepath) {

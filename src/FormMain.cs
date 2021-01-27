@@ -63,6 +63,7 @@ namespace FT_Launcher {
 
         private void FormMain_Load(object sender, EventArgs e) {
             Logger.TextBoxLog = textBoxLog;
+            Logger.ProgressBar = progressBar;
 
             if (ModifierKeys == Keys.Shift) {
             } else {
