@@ -12,7 +12,7 @@ As a result of the [JFTSE - Java Fantasy Tennis Server Emulator](https://github.
 
 ## Installation
 
-Grab the binary from the [RELEASE](/releases/latest) section or build your own version using [Microsoft Visual Studio](https://visualstudio.microsoft.com/).
+Grab the binary from the [RELEASE](https://github.com/WongKit/FT-Launcher/releases) section or build your own version using [Microsoft Visual Studio](https://visualstudio.microsoft.com/).
 
 ## Usage
 
