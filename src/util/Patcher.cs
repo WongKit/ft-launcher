@@ -27,8 +27,11 @@ class Patcher {
     private const char sep = ';';
     private const string bak = ".bak";
 
+    public bool RequiresRestart { get;  private set; }
+
     public void CheckAndUpdateFiles(string targetDirectory, string downloadUrl) {
         Logger.Write("Downloading update file...");
+        RequiresRestart = false;
         List<Checksum> checksums = ReadChecksumFile(downloadUrl + "files.md5");
 
         if (checksums.Count == 0) {
@@ -119,6 +122,8 @@ class Patcher {
     private void DownloadFiles(string directory, string downloadUrl, List<Checksum> checksums) {
         Logger.Write("Starting downloads...");
 
+        string launcherPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+
         Logger.Progress(0);
         long totalSize = checksums.Sum(c => c.size);
         long processedSize = 0;
@@ -154,6 +159,13 @@ class Patcher {
                 }
                 try {
                     webClient.DownloadFile(sourceFile, targetFile);
+
+                    if (!RequiresRestart) {
+                        if (targetFile == launcherPath || targetFile == launcherPath + ".config") {
+                            Logger.Write("Launcher is updated and requires a restart");
+                            RequiresRestart = true;
+                        }
+                    }
 
                     processedSize += checksum.size;
                     Logger.Progress(processedSize, totalSize);

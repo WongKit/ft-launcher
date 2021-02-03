@@ -64,9 +64,16 @@ namespace FT_Launcher {
 
             try {
                 Logger.Write("Checking for updates and launching application...");
-                string applicationPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                string launcherPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                string applicationPath = Path.GetDirectoryName(launcherPath);
                 string updateUrl = GetSetting("updateUrl");
                 patcher.CheckAndUpdateFiles(applicationPath, updateUrl);
+
+                if (patcher.RequiresRestart) {
+                    Logger.Write("Restarting launcher now");
+                    Application.Restart();
+                    return;
+                }
 
                 string launchFile = GetSetting("launchFile", "");
                 string arguments = GetSetting("launchFileArgs", "");
