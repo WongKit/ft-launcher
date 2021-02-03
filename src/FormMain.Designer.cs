@@ -88,6 +88,8 @@ namespace FT_Launcher
             this.webBrowserNews.Size = new System.Drawing.Size(621, 290);
             this.webBrowserNews.TabIndex = 1;
             this.webBrowserNews.Url = new System.Uri("", System.UriKind.Relative);
+            this.webBrowserNews.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.WebBrowserNews_DocumentCompleted);
+            this.webBrowserNews.NewWindow += new System.ComponentModel.CancelEventHandler(this.WebBrowserNews_NewWindow);
             // 
             // buttonLaunch
             // 

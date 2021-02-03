@@ -18,6 +18,7 @@
 
 using System;
 using System.Configuration;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -35,6 +36,8 @@ namespace FT_Launcher {
         public static extern bool ReleaseCapture();
 
         private Patcher patcher = new Patcher();
+        private HtmlElement webBrowserDocumentClickedElement;
+
 
         public FormMain() {
             InitializeComponent();
@@ -91,9 +94,7 @@ namespace FT_Launcher {
 
             TabClick(labelNews, null);
             webBrowserNews.Navigate(GetSetting("newsUrl", "about:blank"));
-            webBrowserNews.Refresh(WebBrowserRefreshOption.Completely);
         }
-
 
         private void FormMain_MouseDown(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Left) {
@@ -147,6 +148,22 @@ namespace FT_Launcher {
             } else if (label == labelAbout) {
                 panelAbout.Visible = true;
             }
+        }
+
+        private void WebBrowserNews_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e) {
+            webBrowserNews.Document.MouseDown += WebBrowserNewsDocument_MouseDown;
+        }
+
+        private void WebBrowserNews_NewWindow(object sender, System.ComponentModel.CancelEventArgs e) {
+            if (webBrowserDocumentClickedElement != null && webBrowserDocumentClickedElement.TagName == "A") {
+                e.Cancel = true;
+                string href = webBrowserDocumentClickedElement.GetAttribute("href");
+                Process.Start(href);
+            }
+        }
+
+        private void WebBrowserNewsDocument_MouseDown(object sender, HtmlElementEventArgs e) {
+            webBrowserDocumentClickedElement = webBrowserNews.Document.GetElementFromPoint(e.ClientMousePosition);
         }
     }
 }
