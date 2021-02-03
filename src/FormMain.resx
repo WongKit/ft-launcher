@@ -4087,4 +4087,7 @@
         4AAAAMABAACAAAAAwAAAAIAAAAAAAQAAAAMAAAAPAAAADwAAAA8AAIAfAADAPwAA4H8AAA==
 </value>
   </data>
+  <metadata name="backgroundWorkerLaunch.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>310, 17</value>
+  </metadata>
 </root>

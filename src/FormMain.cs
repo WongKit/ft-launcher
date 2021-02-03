@@ -38,9 +38,38 @@ namespace FT_Launcher {
         private Patcher patcher = new Patcher();
         private HtmlElement webBrowserDocumentClickedElement;
 
-
         public FormMain() {
             InitializeComponent();
+        }
+
+        private void BackgroundWorkerLaunch_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e) {
+            Logger.Write("Checking for updates and launching application...");
+            string launcherPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string applicationPath = Path.GetDirectoryName(launcherPath);
+            string updateUrl = GetSetting("updateUrl");
+            patcher.CheckAndUpdateFiles(applicationPath, updateUrl);
+
+            if (patcher.RequiresRestart) {
+                Logger.Write("Restarting launcher now");
+                Application.Restart();
+                return;
+            }
+
+            string launchFile = GetSetting("launchFile", "");
+            string arguments = GetSetting("launchFileArgs", "");
+            if (launchFile != "") {
+                patcher.RunApplication(applicationPath + "\\" + launchFile, arguments);
+                Application.Exit();
+            }
+        }
+
+        private void BackgroundWorkerLaunch_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e) {
+            if (e.Error != null) {
+                Logger.Error(e.Error.Message);
+                Logger.Progress(0);
+                TabClick(labelLog, null);
+            }
+            buttonLaunch.Enabled = true;
         }
 
         private void ButtonCreateChecksum_Click(object sender, EventArgs e) {
@@ -61,32 +90,7 @@ namespace FT_Launcher {
 
         private void ButtonLaunch_Click(object sender, EventArgs e) {
             buttonLaunch.Enabled = false;
-
-            try {
-                Logger.Write("Checking for updates and launching application...");
-                string launcherPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-                string applicationPath = Path.GetDirectoryName(launcherPath);
-                string updateUrl = GetSetting("updateUrl");
-                patcher.CheckAndUpdateFiles(applicationPath, updateUrl);
-
-                if (patcher.RequiresRestart) {
-                    Logger.Write("Restarting launcher now");
-                    Application.Restart();
-                    return;
-                }
-
-                string launchFile = GetSetting("launchFile", "");
-                string arguments = GetSetting("launchFileArgs", "");
-                if (launchFile != "") {
-                    patcher.RunApplication(applicationPath + "\\" + launchFile, arguments);
-                    Application.Exit();
-                }
-
-            } catch (Exception ex) {
-                Logger.Error(ex.Message);
-                TabClick(labelLog, null);
-            }
-            buttonLaunch.Enabled = true;
+            backgroundWorkerLaunch.RunWorkerAsync();
         }
 
         private void FormMain_Load(object sender, EventArgs e) {

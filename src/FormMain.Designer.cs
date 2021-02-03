@@ -60,6 +60,7 @@ namespace FT_Launcher
             this.labelLog = new System.Windows.Forms.Label();
             this.labelAbout = new System.Windows.Forms.Label();
             this.panelAbout = new System.Windows.Forms.Panel();
+            this.backgroundWorkerLaunch = new System.ComponentModel.BackgroundWorker();
             this.panelNews.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureActiveTab)).BeginInit();
@@ -211,6 +212,11 @@ namespace FT_Launcher
             this.panelAbout.Size = new System.Drawing.Size(621, 290);
             this.panelAbout.TabIndex = 11;
             // 
+            // backgroundWorkerLaunch
+            // 
+            this.backgroundWorkerLaunch.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorkerLaunch_DoWork);
+            this.backgroundWorkerLaunch.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorkerLaunch_RunWorkerCompleted);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,6 +271,7 @@ namespace FT_Launcher
         private System.Windows.Forms.Label labelLog;
         private System.Windows.Forms.Label labelAbout;
         private System.Windows.Forms.Panel panelAbout;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerLaunch;
     }
 }
 
