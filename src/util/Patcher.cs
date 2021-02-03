@@ -25,6 +25,7 @@ using System.Security.Cryptography;
 
 class Patcher {
     private const char sep = ';';
+    private const string bak = ".bak";
 
     public void CheckAndUpdateFiles(string targetDirectory, string downloadUrl) {
         Logger.Write("Downloading update file...");
@@ -100,6 +101,14 @@ class Patcher {
                 different.Add(checksum);
             }
 
+            try {
+                string backupFile = targetFile + bak;
+                if (File.Exists(backupFile)) {
+                    File.Delete(backupFile);
+                    Logger.Write("Removed old backup file " + checksum.path + bak);
+                }
+            } catch (Exception) { }
+
             checkedSize += checksum.size;
             Logger.Progress(checkedSize, totalSize);
         }
@@ -119,7 +128,7 @@ class Patcher {
 
             foreach (Checksum checksum in checksums) {
                 string targetFile = directory + checksum.path;
-                string backupFile = targetFile + ".bak";
+                string backupFile = targetFile + bak;
                 string sourceFile = (downloadUrl + checksum.path).Replace('\\', '/');
 
                 if (File.Exists(backupFile)) {
