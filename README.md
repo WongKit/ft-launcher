@@ -34,3 +34,15 @@ The launcher checks the `<updateUrl>/files.md5` to determine which local files (
 You can generate the files.md5 by launching the FT_Launcher.exe **while holding the *Shift*-Key**. You will see an additional button "Create Checksum" that lets you select a directory and build the files.md5 for you.
 
 The launcher can also update itself, if it is part of the checksum list.
+
+### Hints for building the news page
+
+The browser control which shows your custom news page uses the embedded Internet Explorer engine, because it is available on every recent Windows computer. I recommend using the following meta tags within your HTML's `<head>` tag:
+
+```html
+<!-- disable IE compatibility mode, allows more "modern" web tech -->
+<meta http-equiv="x-ua-compatible" content="IE=Edge"/>
+
+<!-- disable caching, always loads the current version of your page -->
+<meta http-equiv="cache-control" content="no-cache">
+```
