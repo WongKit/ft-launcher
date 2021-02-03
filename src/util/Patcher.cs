@@ -29,6 +29,14 @@ class Patcher {
 
     public bool RequiresRestart { get;  private set; }
 
+    /// <summary>
+    /// Main launcher method that executes the following steps
+    /// - Download the files.md5 file from a remote server
+    /// - Compare the checksums with the local directory
+    /// - Download files which differ between checksum file and local directory
+    /// </summary>
+    /// <param name="targetDirectory">Path to the local directory</param>
+    /// <param name="downloadUrl">Path of the remote url containing the /files.md5</param>
     public void CheckAndUpdateFiles(string targetDirectory, string downloadUrl) {
         Logger.Write("Downloading update file...");
         RequiresRestart = false;
@@ -51,6 +59,10 @@ class Patcher {
         }
     }
 
+    /// <summary>
+    /// Loops through all files of a directory to create the files.md5 in it
+    /// </summary>
+    /// <param name="directory">Path to the local directory</param>
     public void CreateChecksumList(string directory) {
         string checksumFile = directory + "/files.md5";
         if (File.Exists(checksumFile)) {
@@ -67,6 +79,11 @@ class Patcher {
         streamWriter.Close();
     }
 
+    /// <summary>
+    /// Executes an application with parameters if it exists.
+    /// </summary>
+    /// <param name="launchApplicationPath">Path of executable</param>
+    /// <param name="arguments">Program arguments</param>
     public void RunApplication(string launchApplicationPath, string arguments) {
         if (!File.Exists(launchApplicationPath)) {
             throw new Exception("Application to launch does not exist. " + launchApplicationPath);
@@ -76,6 +93,12 @@ class Patcher {
         }
     }
 
+    /// <summary>
+    /// Compares a local directory with a list of checksums
+    /// </summary>
+    /// <param name="targetDirectory">Path to the local directory</param>
+    /// <param name="checksums">List of checksums to compare with</param>
+    /// <returns></returns>
     private List<Checksum> CompareChecksumWithLocal(string targetDirectory, List<Checksum> checksums) {
         List<Checksum> different = new List<Checksum>();
 
@@ -119,6 +142,15 @@ class Patcher {
         return different;
     }
 
+    /// <summary>
+    /// Downloads all files that are passed in the checksum list. If a file is in use, it is renamed with the
+    /// extension .bak to download a newer version to its original file name.
+    /// If the downloaded file contains the launcher application itself or its .config file, the flag RequiresRestart
+    /// is set to true.
+    /// </summary>
+    /// <param name="directory">Path to the local directory</param>
+    /// <param name="downloadUrl">Download url root</param>
+    /// <param name="checksums">List of files to download</param>
     private void DownloadFiles(string directory, string downloadUrl, List<Checksum> checksums) {
         Logger.Write("Starting downloads...");
 
@@ -179,6 +211,12 @@ class Patcher {
         Logger.Write("Downloads finished");
     }
 
+    /// <summary>
+    /// Recursively gets checksums and file size information of a given directory
+    /// </summary>
+    /// <param name="rootDirectory">Root directory</param>
+    /// <param name="directory">Current directory</param>
+    /// <param name="checksums">Collected checksum files</param>
     private void GetChecksums(string rootDirectory, string directory, List<Checksum> checksums) {
         foreach (string file in Directory.GetFiles(directory)) {
             Checksum checksum = new Checksum();
@@ -193,6 +231,11 @@ class Patcher {
         }
     }
 
+    /// <summary>
+    /// Returns a MD5 hash of a given file
+    /// </summary>
+    /// <param name="filepath">Path of file to hash</param>
+    /// <returns>MD5 checksum</returns>
     private string GetMd5Hash(string filepath) {
         try {
             using (var md5 = MD5.Create()) {
@@ -206,6 +249,11 @@ class Patcher {
         }
     }
 
+    /// <summary>
+    /// Parses a files.md5 and creates a list of checksum files
+    /// </summary>
+    /// <param name="checksumFile">Checksum files</param>
+    /// <returns></returns>
     private List<Checksum> ReadChecksumFile(string checksumFile) {
         List<Checksum> checksums = new List<Checksum>();
         using (var webClient = new WebClient()) {

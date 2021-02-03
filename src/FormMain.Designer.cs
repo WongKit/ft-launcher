@@ -72,9 +72,9 @@ namespace FT_Launcher
             // 
             this.panelNews.BackColor = System.Drawing.Color.White;
             this.panelNews.Controls.Add(this.webBrowserNews);
-            this.panelNews.Location = new System.Drawing.Point(30, 132);
+            this.panelNews.Location = new System.Drawing.Point(29, 131);
             this.panelNews.Name = "panelNews";
-            this.panelNews.Size = new System.Drawing.Size(621, 290);
+            this.panelNews.Size = new System.Drawing.Size(650, 400);
             this.panelNews.TabIndex = 1;
             // 
             // webBrowserNews
@@ -86,7 +86,7 @@ namespace FT_Launcher
             this.webBrowserNews.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowserNews.Name = "webBrowserNews";
             this.webBrowserNews.ScriptErrorsSuppressed = true;
-            this.webBrowserNews.Size = new System.Drawing.Size(621, 290);
+            this.webBrowserNews.Size = new System.Drawing.Size(650, 400);
             this.webBrowserNews.TabIndex = 1;
             this.webBrowserNews.Url = new System.Uri("", System.UriKind.Relative);
             this.webBrowserNews.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.WebBrowserNews_DocumentCompleted);
@@ -94,7 +94,7 @@ namespace FT_Launcher
             // 
             // buttonLaunch
             // 
-            this.buttonLaunch.Location = new System.Drawing.Point(576, 429);
+            this.buttonLaunch.Location = new System.Drawing.Point(604, 538);
             this.buttonLaunch.Name = "buttonLaunch";
             this.buttonLaunch.Size = new System.Drawing.Size(75, 23);
             this.buttonLaunch.TabIndex = 2;
@@ -106,7 +106,7 @@ namespace FT_Launcher
             // 
             this.pictureClose.BackColor = System.Drawing.Color.Transparent;
             this.pictureClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureClose.Location = new System.Drawing.Point(652, 5);
+            this.pictureClose.Location = new System.Drawing.Point(679, 5);
             this.pictureClose.Name = "pictureClose";
             this.pictureClose.Size = new System.Drawing.Size(20, 20);
             this.pictureClose.TabIndex = 3;
@@ -117,9 +117,9 @@ namespace FT_Launcher
             // 
             this.pictureActiveTab.BackColor = System.Drawing.Color.Transparent;
             this.pictureActiveTab.Image = ((System.Drawing.Image)(resources.GetObject("pictureActiveTab.Image")));
-            this.pictureActiveTab.Location = new System.Drawing.Point(30, 92);
+            this.pictureActiveTab.Location = new System.Drawing.Point(30, 91);
             this.pictureActiveTab.Name = "pictureActiveTab";
-            this.pictureActiveTab.Size = new System.Drawing.Size(83, 29);
+            this.pictureActiveTab.Size = new System.Drawing.Size(102, 30);
             this.pictureActiveTab.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureActiveTab.TabIndex = 4;
             this.pictureActiveTab.TabStop = false;
@@ -128,21 +128,23 @@ namespace FT_Launcher
             // 
             this.panelLog.BackColor = System.Drawing.Color.White;
             this.panelLog.Controls.Add(this.textBoxLog);
-            this.panelLog.Location = new System.Drawing.Point(30, 132);
+            this.panelLog.Location = new System.Drawing.Point(29, 131);
             this.panelLog.Name = "panelLog";
-            this.panelLog.Size = new System.Drawing.Size(621, 290);
+            this.panelLog.Size = new System.Drawing.Size(650, 400);
             this.panelLog.TabIndex = 5;
             // 
             // textBoxLog
             // 
             this.textBoxLog.BackColor = System.Drawing.Color.White;
             this.textBoxLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxLog.Location = new System.Drawing.Point(5, 0);
+            this.textBoxLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxLog.Location = new System.Drawing.Point(0, 0);
             this.textBoxLog.Multiline = true;
             this.textBoxLog.Name = "textBoxLog";
             this.textBoxLog.ReadOnly = true;
             this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxLog.Size = new System.Drawing.Size(615, 288);
+            this.textBoxLog.Size = new System.Drawing.Size(650, 400);
             this.textBoxLog.TabIndex = 0;
             this.textBoxLog.WordWrap = false;
             // 
@@ -152,7 +154,7 @@ namespace FT_Launcher
             // 
             // buttonCreateChecksum
             // 
-            this.buttonCreateChecksum.Location = new System.Drawing.Point(459, 429);
+            this.buttonCreateChecksum.Location = new System.Drawing.Point(488, 538);
             this.buttonCreateChecksum.Name = "buttonCreateChecksum";
             this.buttonCreateChecksum.Size = new System.Drawing.Size(111, 23);
             this.buttonCreateChecksum.TabIndex = 6;
@@ -162,9 +164,9 @@ namespace FT_Launcher
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(31, 429);
+            this.progressBar.Location = new System.Drawing.Point(29, 538);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(422, 23);
+            this.progressBar.Size = new System.Drawing.Size(453, 23);
             this.progressBar.TabIndex = 7;
             // 
             // errorProvider1
@@ -174,9 +176,9 @@ namespace FT_Launcher
             // labelNews
             // 
             this.labelNews.BackColor = System.Drawing.Color.White;
-            this.labelNews.Location = new System.Drawing.Point(38, 94);
+            this.labelNews.Location = new System.Drawing.Point(37, 94);
             this.labelNews.Name = "labelNews";
-            this.labelNews.Size = new System.Drawing.Size(68, 26);
+            this.labelNews.Size = new System.Drawing.Size(88, 26);
             this.labelNews.TabIndex = 8;
             this.labelNews.Text = "News";
             this.labelNews.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -185,9 +187,9 @@ namespace FT_Launcher
             // labelLog
             // 
             this.labelLog.BackColor = System.Drawing.Color.Transparent;
-            this.labelLog.Location = new System.Drawing.Point(120, 94);
+            this.labelLog.Location = new System.Drawing.Point(137, 94);
             this.labelLog.Name = "labelLog";
-            this.labelLog.Size = new System.Drawing.Size(68, 26);
+            this.labelLog.Size = new System.Drawing.Size(88, 26);
             this.labelLog.TabIndex = 9;
             this.labelLog.Text = "Log";
             this.labelLog.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -196,20 +198,21 @@ namespace FT_Launcher
             // labelAbout
             // 
             this.labelAbout.BackColor = System.Drawing.Color.Transparent;
-            this.labelAbout.Location = new System.Drawing.Point(201, 94);
+            this.labelAbout.Location = new System.Drawing.Point(237, 94);
             this.labelAbout.Name = "labelAbout";
-            this.labelAbout.Size = new System.Drawing.Size(68, 26);
+            this.labelAbout.Size = new System.Drawing.Size(88, 26);
             this.labelAbout.TabIndex = 10;
             this.labelAbout.Text = "About";
             this.labelAbout.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelAbout.Visible = false;
             this.labelAbout.Click += new System.EventHandler(this.TabClick);
             // 
             // panelAbout
             // 
             this.panelAbout.BackColor = System.Drawing.Color.White;
-            this.panelAbout.Location = new System.Drawing.Point(30, 132);
+            this.panelAbout.Location = new System.Drawing.Point(29, 131);
             this.panelAbout.Name = "panelAbout";
-            this.panelAbout.Size = new System.Drawing.Size(621, 290);
+            this.panelAbout.Size = new System.Drawing.Size(650, 400);
             this.panelAbout.TabIndex = 11;
             // 
             // backgroundWorkerLaunch
@@ -223,7 +226,7 @@ namespace FT_Launcher
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(680, 480);
+            this.ClientSize = new System.Drawing.Size(708, 590);
             this.Controls.Add(this.labelAbout);
             this.Controls.Add(this.labelLog);
             this.Controls.Add(this.labelNews);
@@ -232,9 +235,9 @@ namespace FT_Launcher
             this.Controls.Add(this.pictureActiveTab);
             this.Controls.Add(this.pictureClose);
             this.Controls.Add(this.buttonLaunch);
+            this.Controls.Add(this.panelLog);
             this.Controls.Add(this.panelAbout);
             this.Controls.Add(this.panelNews);
-            this.Controls.Add(this.panelLog);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
