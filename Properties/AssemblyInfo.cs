@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("FT Launcher")]
-[assembly: AssemblyCopyright("Copyright © 2021")]
+[assembly: AssemblyCopyright("Copyright © 2021 WongKit")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
