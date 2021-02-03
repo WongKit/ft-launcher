@@ -97,12 +97,6 @@ namespace FT_Launcher {
             Logger.TextBoxLog = textBoxLog;
             Logger.ProgressBar = progressBar;
 
-            if (ModifierKeys == Keys.Shift) {
-            } else {
-                buttonCreateChecksum.Visible = false;
-                progressBar.Width = 539;
-            }
-
             TabClick(labelNews, null);
             webBrowserNews.Navigate(GetSetting("newsUrl", "about:blank"));
         }
@@ -111,6 +105,14 @@ namespace FT_Launcher {
             if (e.Button == MouseButtons.Left) {
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void FormMain_Shown(object sender, EventArgs e) {
+            if (ModifierKeys == Keys.Shift) {
+            } else {
+                buttonCreateChecksum.Visible = false;
+                progressBar.Width = 539;
             }
         }
 

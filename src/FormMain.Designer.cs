@@ -242,6 +242,7 @@ namespace FT_Launcher
             this.Text = "FT Launcher";
             this.TransparencyKey = System.Drawing.Color.Fuchsia;
             this.Load += new System.EventHandler(this.FormMain_Load);
+            this.Shown += new System.EventHandler(this.FormMain_Shown);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormMain_MouseDown);
             this.panelNews.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureClose)).EndInit();
