@@ -27,9 +27,17 @@ namespace FT_Launcher {
         /// </summary>
         [STAThread]
         static void Main() {
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhadledException);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormMain());
+        }
+
+        static void UnhadledException(object sender, UnhandledExceptionEventArgs args) {
+            Exception e = (Exception)args.ExceptionObject;
+            string error = e.Message + "\n" + e.StackTrace;
+            Console.WriteLine(error);
+            MessageBox.Show(error);
         }
     }
 }
