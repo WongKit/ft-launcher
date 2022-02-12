@@ -1,6 +1,6 @@
 ﻿/* 
  * FT Launcher - a simple and robust game updater/launcher
- * Copyright (C) 2021 WongKit
+ * Copyright (C) 2021-2022 WongKit
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,6 @@
  */
 
 using System;
-using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -52,7 +51,7 @@ namespace FT_Launcher {
             Logger.Write("Checking for updates and launching application...");
             string launcherPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
             string applicationPath = Path.GetDirectoryName(launcherPath);
-            string updateUrl = GetSetting("updateUrl");
+            string updateUrl = Settings.GetSetting("updateUrl");
             patcher.CheckAndUpdateFiles(applicationPath, updateUrl);
 
             if (patcher.RequiresRestart) {
@@ -61,8 +60,8 @@ namespace FT_Launcher {
                 return;
             }
 
-            string launchFile = GetSetting("launchFile", "");
-            string arguments = GetSetting("launchFileArgs", "");
+            string launchFile = Settings.GetSetting("launchFile", "");
+            string arguments = Settings.GetSetting("launchFileArgs", "");
             if (launchFile != "") {
                 patcher.RunApplication(applicationPath + "\\" + launchFile, arguments);
                 Application.Exit();
@@ -124,7 +123,7 @@ namespace FT_Launcher {
             Logger.ProgressBar = progressBar;
 
             TabClick(labelNews, null);
-            webBrowserNews.Navigate(GetSetting("newsUrl", "about:blank"));
+            webBrowserNews.Navigate(Settings.GetSetting("newsUrl", "about:blank"));
         }
 
         /// <summary>
@@ -151,38 +150,7 @@ namespace FT_Launcher {
                 buttonCreateChecksum.Visible = false;
                 progressBar.Width = 569;
             }
-
             Logger.Write("Application startup");
-        }
-
-        /// <summary>
-        /// Read any setting from the <appSettings> section of the FT_Launcher.exe.config file.
-        /// If the key does not exist, an exception will be thrown
-        /// </summary>
-        /// <param name="key">Key</param>
-        /// <returns>Value</returns>
-        private string GetSetting(string key) {
-            string value = GetSetting(key, null);
-            if (value == null) {
-                throw new Exception("Mandatory setting \"" + key + "\" not found");
-            } else {
-                return value;
-            }
-        }
-
-        /// <summary>
-        /// Read any setting from the <appSettings> section of the FT_Launcher.exe.config file.
-        /// If the key does not exist, the default value will be used
-        /// </summary>
-        /// <param name="key">Key</param>
-        /// <param name="def">Default fallback value</param>
-        /// <returns>Value</returns>
-        private string GetSetting(string key, string def) {
-            if (ConfigurationManager.AppSettings[key] != null) {
-                return ConfigurationManager.AppSettings[key];
-            } else {
-                return def;
-            }
         }
 
         /// <summary>
@@ -204,11 +172,11 @@ namespace FT_Launcher {
 
             panelNews.Visible = false;
             panelLog.Visible = false;
-            panelAbout.Visible = false;
+            panelSettings.Visible = false;
 
             labelNews.BackColor = Color.Transparent;
             labelLog.BackColor = Color.Transparent;
-            labelAbout.BackColor = Color.Transparent;
+            labelSettings.BackColor = Color.Transparent;
             label.BackColor = Color.White;
 
             Point point = new Point(label.Location.X - 7, pictureActiveTab.Location.Y);
@@ -220,8 +188,8 @@ namespace FT_Launcher {
                 panelLog.Visible = true;
                 textBoxLog.SelectionStart = textBoxLog.TextLength;
                 textBoxLog.ScrollToCaret();
-            } else if (label == labelAbout) {
-                panelAbout.Visible = true;
+            } else if (label == labelSettings) {
+                panelSettings.Visible = true;
             }
         }
 

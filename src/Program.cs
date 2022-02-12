@@ -1,6 +1,6 @@
 ﻿/* 
  * FT Launcher - a simple and robust game updater/launcher
- * Copyright (C) 2021 WongKit
+ * Copyright (C) 2021-2022 WongKit
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

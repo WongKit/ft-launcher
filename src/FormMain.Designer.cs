@@ -58,8 +58,8 @@ namespace FT_Launcher
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.labelNews = new System.Windows.Forms.Label();
             this.labelLog = new System.Windows.Forms.Label();
-            this.labelAbout = new System.Windows.Forms.Label();
-            this.panelAbout = new System.Windows.Forms.Panel();
+            this.labelSettings = new System.Windows.Forms.Label();
+            this.panelSettings = new System.Windows.Forms.Panel();
             this.backgroundWorkerLaunch = new System.ComponentModel.BackgroundWorker();
             this.panelNews.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureClose)).BeginInit();
@@ -94,9 +94,9 @@ namespace FT_Launcher
             // 
             // buttonLaunch
             // 
-            this.buttonLaunch.Location = new System.Drawing.Point(604, 538);
+            this.buttonLaunch.Location = new System.Drawing.Point(604, 537);
             this.buttonLaunch.Name = "buttonLaunch";
-            this.buttonLaunch.Size = new System.Drawing.Size(75, 23);
+            this.buttonLaunch.Size = new System.Drawing.Size(75, 25);
             this.buttonLaunch.TabIndex = 2;
             this.buttonLaunch.Text = "Launch";
             this.buttonLaunch.UseVisualStyleBackColor = true;
@@ -116,7 +116,7 @@ namespace FT_Launcher
             // pictureActiveTab
             // 
             this.pictureActiveTab.BackColor = System.Drawing.Color.Transparent;
-            this.pictureActiveTab.Image = ((System.Drawing.Image)(resources.GetObject("pictureActiveTab.Image")));
+            this.pictureActiveTab.Image = global::FT_Launcher.Properties.Resources.activeTabBackground;
             this.pictureActiveTab.Location = new System.Drawing.Point(30, 91);
             this.pictureActiveTab.Name = "pictureActiveTab";
             this.pictureActiveTab.Size = new System.Drawing.Size(102, 30);
@@ -154,9 +154,9 @@ namespace FT_Launcher
             // 
             // buttonCreateChecksum
             // 
-            this.buttonCreateChecksum.Location = new System.Drawing.Point(488, 538);
+            this.buttonCreateChecksum.Location = new System.Drawing.Point(488, 537);
             this.buttonCreateChecksum.Name = "buttonCreateChecksum";
-            this.buttonCreateChecksum.Size = new System.Drawing.Size(111, 23);
+            this.buttonCreateChecksum.Size = new System.Drawing.Size(111, 25);
             this.buttonCreateChecksum.TabIndex = 6;
             this.buttonCreateChecksum.Text = "Create Checksum";
             this.buttonCreateChecksum.UseVisualStyleBackColor = true;
@@ -187,7 +187,7 @@ namespace FT_Launcher
             // labelLog
             // 
             this.labelLog.BackColor = System.Drawing.Color.Transparent;
-            this.labelLog.Location = new System.Drawing.Point(137, 94);
+            this.labelLog.Location = new System.Drawing.Point(237, 94);
             this.labelLog.Name = "labelLog";
             this.labelLog.Size = new System.Drawing.Size(88, 26);
             this.labelLog.TabIndex = 9;
@@ -195,25 +195,24 @@ namespace FT_Launcher
             this.labelLog.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelLog.Click += new System.EventHandler(this.TabClick);
             // 
-            // labelAbout
+            // labelSettings
             // 
-            this.labelAbout.BackColor = System.Drawing.Color.Transparent;
-            this.labelAbout.Location = new System.Drawing.Point(237, 94);
-            this.labelAbout.Name = "labelAbout";
-            this.labelAbout.Size = new System.Drawing.Size(88, 26);
-            this.labelAbout.TabIndex = 10;
-            this.labelAbout.Text = "About";
-            this.labelAbout.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.labelAbout.Visible = false;
-            this.labelAbout.Click += new System.EventHandler(this.TabClick);
+            this.labelSettings.BackColor = System.Drawing.Color.Transparent;
+            this.labelSettings.Location = new System.Drawing.Point(137, 94);
+            this.labelSettings.Name = "labelSettings";
+            this.labelSettings.Size = new System.Drawing.Size(88, 26);
+            this.labelSettings.TabIndex = 10;
+            this.labelSettings.Text = "Settings";
+            this.labelSettings.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelSettings.Click += new System.EventHandler(this.TabClick);
             // 
-            // panelAbout
+            // panelSettings
             // 
-            this.panelAbout.BackColor = System.Drawing.Color.White;
-            this.panelAbout.Location = new System.Drawing.Point(29, 131);
-            this.panelAbout.Name = "panelAbout";
-            this.panelAbout.Size = new System.Drawing.Size(650, 400);
-            this.panelAbout.TabIndex = 11;
+            this.panelSettings.BackColor = System.Drawing.Color.White;
+            this.panelSettings.Location = new System.Drawing.Point(29, 131);
+            this.panelSettings.Name = "panelSettings";
+            this.panelSettings.Size = new System.Drawing.Size(650, 400);
+            this.panelSettings.TabIndex = 11;
             // 
             // backgroundWorkerLaunch
             // 
@@ -222,12 +221,11 @@ namespace FT_Launcher
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImage = global::FT_Launcher.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(708, 590);
-            this.Controls.Add(this.labelAbout);
+            this.Controls.Add(this.labelSettings);
             this.Controls.Add(this.labelLog);
             this.Controls.Add(this.labelNews);
             this.Controls.Add(this.progressBar);
@@ -236,7 +234,7 @@ namespace FT_Launcher
             this.Controls.Add(this.pictureClose);
             this.Controls.Add(this.buttonLaunch);
             this.Controls.Add(this.panelLog);
-            this.Controls.Add(this.panelAbout);
+            this.Controls.Add(this.panelSettings);
             this.Controls.Add(this.panelNews);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -273,8 +271,8 @@ namespace FT_Launcher
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Label labelNews;
         private System.Windows.Forms.Label labelLog;
-        private System.Windows.Forms.Label labelAbout;
-        private System.Windows.Forms.Panel panelAbout;
+        private System.Windows.Forms.Label labelSettings;
+        private System.Windows.Forms.Panel panelSettings;
         private System.ComponentModel.BackgroundWorker backgroundWorkerLaunch;
     }
 }

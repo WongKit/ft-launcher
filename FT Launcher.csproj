@@ -75,10 +75,12 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="src\model\Checksum.cs" />
+    <Compile Include="src\model\CustomConfigSection.cs" />
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\util\Logger.cs" />
     <Compile Include="src\util\Patcher.cs" />
+    <Compile Include="src\util\Settings.cs" />
     <EmbeddedResource Include="src\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -113,6 +115,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
+    <None Include="Resources\activeTabBackground.png" />
+    <None Include="Resources\background.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
