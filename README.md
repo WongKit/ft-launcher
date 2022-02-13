@@ -18,14 +18,20 @@ Grab the binary from the [RELEASE](https://github.com/WongKit/FT-Launcher/releas
 
 ### Configuration
 
-Despite its name, the FT Launcher can keep any application up-to-date as it is freely configurable. Along with the FT_Launcher.exe, there is a file named **FT_Launcher.exe.config**, that can be used to modify certain parameters within the `<appSettings>` tag.
+Despite its name, the FT Launcher can keep any application up-to-date as it is freely configurable. Along with the FT_Launcher.exe, there is a file named **FT_Launcher.exe.config**, that can be used to modify certain parameters within the `<appSettings>` section.
 
 | key            | example                    | description                                                                                                                       |
 |----------------|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| updateUrl      | http://localhost/update/   | Path to the remote url that contains all patch files and the **files.md5**. Don't forget to include the trailing slash of the URL |
+| title          | FT Launcher                | Application name shown in the titlebar and taskbar                                                                                |
 | newsUrl        | http://localhost/news.html | Website to be shown in the news tab                                                                                               |
+
+In the `<downloadUrls>` section, you can add **up to 5** different updates servers that can be selected by the user in the applications settings menu.
+| key            | example                    | description                                                                                                                       |
+|----------------|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| name           | Default Server             | Name of the update server that is shown in the settings menu                                                                      |
+| url            | http://localhost/update/   | Path to the remote url that contains all patch files and the **files.md5**. Don't forget to include the trailing slash of the URL |
 | launchFile     | FT_Client.exe              | Application that is launched after successfully checking for updates                                                              |
-| launchFileArgs | 0                          | Command line arguments for the launched application                                                                               |
+| launchArgs     | 0                          | Command line arguments for the launched application                                                                               |
 
 ### Providing update files
 
