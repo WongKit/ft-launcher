@@ -5,7 +5,7 @@ using System.Text;
 using System.Configuration;
 
 namespace FT_Launcher {
-    public class CustomConfigSectionElement : ConfigurationElement {
+    public class DownloadUrlElement : ConfigurationElement {
         [ConfigurationProperty("name", IsKey = true, IsRequired = true)]
         public string Name {
             get { return (string)this["name"]; }
@@ -31,21 +31,21 @@ namespace FT_Launcher {
         }
     }
 
-    [ConfigurationCollection(typeof(CustomConfigSectionElement), AddItemName = "downloadUrl")]
-    public class CustomConfigSectionCollection : ConfigurationElementCollection {
+    [ConfigurationCollection(typeof(DownloadUrlElement), AddItemName = "downloadUrl")]
+    public class DownloadUrlElementCollection : ConfigurationElementCollection {
         protected override ConfigurationElement CreateNewElement() {
-            return new CustomConfigSectionElement();
+            return new DownloadUrlElement();
         }
 
         protected override object GetElementKey(ConfigurationElement element) {
-            return ((CustomConfigSectionElement)element).Name;
+            return ((DownloadUrlElement)element).Name;
         }
     }
 
     public class CustomConfigSection : ConfigurationSection {
         [ConfigurationProperty("downloadUrls", IsDefaultCollection = true)]
-        public CustomConfigSectionCollection NodeList {
-            get { return (CustomConfigSectionCollection)this["downloadUrls"]; }
+        public DownloadUrlElementCollection NodeList {
+            get { return (DownloadUrlElementCollection)this["downloadUrls"]; }
         }
     }
 }

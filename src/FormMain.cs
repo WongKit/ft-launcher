@@ -17,6 +17,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -37,6 +38,7 @@ namespace FT_Launcher {
 
         private Patcher patcher = new Patcher();
         private HtmlElement webBrowserDocumentClickedElement;
+        private List<DownloadUrlElement> downloadUrls;
 
         public FormMain() {
             InitializeComponent();
@@ -51,8 +53,8 @@ namespace FT_Launcher {
             Logger.Write("Checking for updates and launching application...");
             string launcherPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
             string applicationPath = Path.GetDirectoryName(launcherPath);
-            string updateUrl = Settings.GetSetting("updateUrl");
-            patcher.CheckAndUpdateFiles(applicationPath, updateUrl);
+            DownloadUrlElement downloadUrl = GetSelectedDownloadUrl();
+            patcher.CheckAndUpdateFiles(applicationPath, downloadUrl.Url);
 
             if (patcher.RequiresRestart) {
                 Logger.Write("Restarting launcher now");
@@ -60,10 +62,8 @@ namespace FT_Launcher {
                 return;
             }
 
-            string launchFile = Settings.GetSetting("launchFile", "");
-            string arguments = Settings.GetSetting("launchFileArgs", "");
-            if (launchFile != "") {
-                patcher.RunApplication(applicationPath + "\\" + launchFile, arguments);
+            if (downloadUrl.LaunchFile != "") {
+                patcher.RunApplication(applicationPath + "\\" + downloadUrl.LaunchFile, downloadUrl.LaunchArgs);
                 Application.Exit();
             }
         }
@@ -123,8 +123,6 @@ namespace FT_Launcher {
             Logger.ProgressBar = progressBar;
 
             TabClick(labelNews, null);
-            webBrowserNews.Navigate(Settings.GetSetting("newsUrl", "about:blank"));
-            this.Text = Settings.GetSetting("title", "FT Launcher");
         }
 
         /// <summary>
@@ -151,7 +149,29 @@ namespace FT_Launcher {
                 buttonCreateChecksum.Visible = false;
                 progressBar.Width = 569;
             }
+
+            webBrowserNews.Navigate(Settings.GetSetting("newsUrl", "about:blank"));
+            this.Text = Settings.GetSetting("title", "FT Launcher");
+            PrepareDownloadUrlElements();
+
             Logger.Write("Application startup");
+        }
+
+
+        private DownloadUrlElement GetSelectedDownloadUrl() {
+            if (radioButtonUpdateUrl1.Checked) {
+                return downloadUrls[0];
+            } else if (radioButtonUpdateUrl2.Checked) {
+                return downloadUrls[1];
+            } else if (radioButtonUpdateUrl3.Checked) {
+                return downloadUrls[2];
+            } else if (radioButtonUpdateUrl4.Checked) {
+                return downloadUrls[3];
+            } else if (radioButtonUpdateUrl5.Checked) {
+                return downloadUrls[4];
+            } else {
+                return null;
+            }
         }
 
         /// <summary>
@@ -161,6 +181,37 @@ namespace FT_Launcher {
         /// <param name="e"></param>
         private void PictureClose_Click(object sender, EventArgs e) {
             Close();
+        }
+
+
+        private void PrepareDownloadUrlElements() {
+            bool buttonChecked = false;
+            downloadUrls = Settings.GetDownloadUrls();
+
+            for (int i = 0; i < 5; i++) {
+                RadioButton radioButton = null;
+                switch(i) {
+                    case 0: radioButton = radioButtonUpdateUrl1; break;
+                    case 1: radioButton = radioButtonUpdateUrl2; break;
+                    case 2: radioButton = radioButtonUpdateUrl3; break;
+                    case 3: radioButton = radioButtonUpdateUrl4; break;
+                    case 4: radioButton = radioButtonUpdateUrl5; break;
+                }
+
+                if (downloadUrls.Count > i) {
+                    radioButton.Text = downloadUrls[i].Name;
+                    if (downloadUrls[i].Name == Properties.Settings.Default.SelectedDownloadUrl) {
+                        radioButton.Checked = true;
+                        buttonChecked = true;
+                    }
+                } else {
+                    radioButton.Visible = false;
+                }
+            }
+
+            if (!buttonChecked) {
+                radioButtonUpdateUrl1.Checked = true;
+            }
         }
 
         /// <summary>
@@ -223,6 +274,16 @@ namespace FT_Launcher {
         /// <param name="e"></param>
         private void WebBrowserNewsDocument_MouseDown(object sender, HtmlElementEventArgs e) {
             webBrowserDocumentClickedElement = webBrowserNews.Document.GetElementFromPoint(e.ClientMousePosition);
+        }
+
+        private void radioButtonUpdateUrl_CheckedChanged(object sender, EventArgs e) {
+            if (((RadioButton)sender).Checked) {
+                DownloadUrlElement downloadUrl = GetSelectedDownloadUrl();
+                Properties.Settings.Default.SelectedDownloadUrl = downloadUrl.Name;
+                Properties.Settings.Default.Save();
+
+                Logger.Write("Switch download server to " + downloadUrl.Name);
+            }
         }
     }
 }

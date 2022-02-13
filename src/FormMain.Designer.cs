@@ -60,12 +60,22 @@ namespace FT_Launcher
             this.labelLog = new System.Windows.Forms.Label();
             this.labelSettings = new System.Windows.Forms.Label();
             this.panelSettings = new System.Windows.Forms.Panel();
+            this.groupBoxUpdateUrls = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.radioButtonUpdateUrl1 = new System.Windows.Forms.RadioButton();
+            this.radioButtonUpdateUrl2 = new System.Windows.Forms.RadioButton();
+            this.radioButtonUpdateUrl3 = new System.Windows.Forms.RadioButton();
+            this.radioButtonUpdateUrl4 = new System.Windows.Forms.RadioButton();
+            this.radioButtonUpdateUrl5 = new System.Windows.Forms.RadioButton();
             this.backgroundWorkerLaunch = new System.ComponentModel.BackgroundWorker();
             this.panelNews.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureActiveTab)).BeginInit();
             this.panelLog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.panelSettings.SuspendLayout();
+            this.groupBoxUpdateUrls.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelNews
@@ -209,10 +219,96 @@ namespace FT_Launcher
             // panelSettings
             // 
             this.panelSettings.BackColor = System.Drawing.Color.White;
+            this.panelSettings.Controls.Add(this.groupBoxUpdateUrls);
             this.panelSettings.Location = new System.Drawing.Point(29, 131);
             this.panelSettings.Name = "panelSettings";
             this.panelSettings.Size = new System.Drawing.Size(650, 400);
             this.panelSettings.TabIndex = 11;
+            // 
+            // groupBoxUpdateUrls
+            // 
+            this.groupBoxUpdateUrls.AutoSize = true;
+            this.groupBoxUpdateUrls.Controls.Add(this.flowLayoutPanel1);
+            this.groupBoxUpdateUrls.Location = new System.Drawing.Point(155, 105);
+            this.groupBoxUpdateUrls.Name = "groupBoxUpdateUrls";
+            this.groupBoxUpdateUrls.Size = new System.Drawing.Size(344, 185);
+            this.groupBoxUpdateUrls.TabIndex = 3;
+            this.groupBoxUpdateUrls.TabStop = false;
+            this.groupBoxUpdateUrls.Text = "Download Server Selection";
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.radioButtonUpdateUrl1);
+            this.flowLayoutPanel1.Controls.Add(this.radioButtonUpdateUrl2);
+            this.flowLayoutPanel1.Controls.Add(this.radioButtonUpdateUrl3);
+            this.flowLayoutPanel1.Controls.Add(this.radioButtonUpdateUrl4);
+            this.flowLayoutPanel1.Controls.Add(this.radioButtonUpdateUrl5);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 18);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(338, 164);
+            this.flowLayoutPanel1.TabIndex = 2;
+            // 
+            // radioButtonUpdateUrl1
+            // 
+            this.radioButtonUpdateUrl1.AutoSize = true;
+            this.radioButtonUpdateUrl1.Location = new System.Drawing.Point(3, 3);
+            this.radioButtonUpdateUrl1.Name = "radioButtonUpdateUrl1";
+            this.radioButtonUpdateUrl1.Size = new System.Drawing.Size(149, 21);
+            this.radioButtonUpdateUrl1.TabIndex = 0;
+            this.radioButtonUpdateUrl1.TabStop = true;
+            this.radioButtonUpdateUrl1.Text = "Download Server 1";
+            this.radioButtonUpdateUrl1.UseVisualStyleBackColor = true;
+            this.radioButtonUpdateUrl1.CheckedChanged += new System.EventHandler(this.radioButtonUpdateUrl_CheckedChanged);
+            // 
+            // radioButtonUpdateUrl2
+            // 
+            this.radioButtonUpdateUrl2.AutoSize = true;
+            this.radioButtonUpdateUrl2.Location = new System.Drawing.Point(3, 30);
+            this.radioButtonUpdateUrl2.Name = "radioButtonUpdateUrl2";
+            this.radioButtonUpdateUrl2.Size = new System.Drawing.Size(149, 21);
+            this.radioButtonUpdateUrl2.TabIndex = 1;
+            this.radioButtonUpdateUrl2.TabStop = true;
+            this.radioButtonUpdateUrl2.Text = "Download Server 2";
+            this.radioButtonUpdateUrl2.UseVisualStyleBackColor = true;
+            this.radioButtonUpdateUrl2.CheckedChanged += new System.EventHandler(this.radioButtonUpdateUrl_CheckedChanged);
+            // 
+            // radioButtonUpdateUrl3
+            // 
+            this.radioButtonUpdateUrl3.AutoSize = true;
+            this.radioButtonUpdateUrl3.Location = new System.Drawing.Point(3, 57);
+            this.radioButtonUpdateUrl3.Name = "radioButtonUpdateUrl3";
+            this.radioButtonUpdateUrl3.Size = new System.Drawing.Size(149, 21);
+            this.radioButtonUpdateUrl3.TabIndex = 2;
+            this.radioButtonUpdateUrl3.TabStop = true;
+            this.radioButtonUpdateUrl3.Text = "Download Server 3";
+            this.radioButtonUpdateUrl3.UseVisualStyleBackColor = true;
+            this.radioButtonUpdateUrl3.CheckedChanged += new System.EventHandler(this.radioButtonUpdateUrl_CheckedChanged);
+            // 
+            // radioButtonUpdateUrl4
+            // 
+            this.radioButtonUpdateUrl4.AutoSize = true;
+            this.radioButtonUpdateUrl4.Location = new System.Drawing.Point(3, 84);
+            this.radioButtonUpdateUrl4.Name = "radioButtonUpdateUrl4";
+            this.radioButtonUpdateUrl4.Size = new System.Drawing.Size(149, 21);
+            this.radioButtonUpdateUrl4.TabIndex = 3;
+            this.radioButtonUpdateUrl4.TabStop = true;
+            this.radioButtonUpdateUrl4.Text = "Download Server 4";
+            this.radioButtonUpdateUrl4.UseVisualStyleBackColor = true;
+            this.radioButtonUpdateUrl4.CheckedChanged += new System.EventHandler(this.radioButtonUpdateUrl_CheckedChanged);
+            // 
+            // radioButtonUpdateUrl5
+            // 
+            this.radioButtonUpdateUrl5.AutoSize = true;
+            this.radioButtonUpdateUrl5.Location = new System.Drawing.Point(3, 111);
+            this.radioButtonUpdateUrl5.Name = "radioButtonUpdateUrl5";
+            this.radioButtonUpdateUrl5.Size = new System.Drawing.Size(149, 21);
+            this.radioButtonUpdateUrl5.TabIndex = 4;
+            this.radioButtonUpdateUrl5.TabStop = true;
+            this.radioButtonUpdateUrl5.Text = "Download Server 5";
+            this.radioButtonUpdateUrl5.UseVisualStyleBackColor = true;
+            this.radioButtonUpdateUrl5.CheckedChanged += new System.EventHandler(this.radioButtonUpdateUrl_CheckedChanged);
             // 
             // backgroundWorkerLaunch
             // 
@@ -233,8 +329,8 @@ namespace FT_Launcher
             this.Controls.Add(this.pictureActiveTab);
             this.Controls.Add(this.pictureClose);
             this.Controls.Add(this.buttonLaunch);
-            this.Controls.Add(this.panelLog);
             this.Controls.Add(this.panelSettings);
+            this.Controls.Add(this.panelLog);
             this.Controls.Add(this.panelNews);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -251,6 +347,11 @@ namespace FT_Launcher
             this.panelLog.ResumeLayout(false);
             this.panelLog.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.panelSettings.ResumeLayout(false);
+            this.panelSettings.PerformLayout();
+            this.groupBoxUpdateUrls.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -274,6 +375,13 @@ namespace FT_Launcher
         private System.Windows.Forms.Label labelSettings;
         private System.Windows.Forms.Panel panelSettings;
         private System.ComponentModel.BackgroundWorker backgroundWorkerLaunch;
+        private System.Windows.Forms.RadioButton radioButtonUpdateUrl1;
+        private System.Windows.Forms.GroupBox groupBoxUpdateUrls;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.RadioButton radioButtonUpdateUrl2;
+        private System.Windows.Forms.RadioButton radioButtonUpdateUrl3;
+        private System.Windows.Forms.RadioButton radioButtonUpdateUrl4;
+        private System.Windows.Forms.RadioButton radioButtonUpdateUrl5;
     }
 }
 

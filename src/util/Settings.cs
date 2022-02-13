@@ -24,12 +24,12 @@ using System.Linq;
 namespace FT_Launcher {
     class Settings {
 
-        public static List<CustomConfigSectionElement> GetDownloadUrls() {
-            List<CustomConfigSectionElement> downloadUrls = new List<CustomConfigSectionElement>();
+        public static List<DownloadUrlElement> GetDownloadUrls() {
+            List<DownloadUrlElement> downloadUrls = new List<DownloadUrlElement>();
 
             string legacyUrl = GetSetting("updateUrl", "");
             if (legacyUrl != "") {
-                CustomConfigSectionElement legacyConfig = new CustomConfigSectionElement();
+                DownloadUrlElement legacyConfig = new DownloadUrlElement();
                 legacyConfig.Name = "Default";
                 legacyConfig.Url = legacyUrl;
                 legacyConfig.LaunchFile = GetSetting("launchFile", "");
@@ -38,8 +38,8 @@ namespace FT_Launcher {
             }
             
             CustomConfigSection customConfigSection = (CustomConfigSection)ConfigurationManager.GetSection("customConfigSection");
-            CustomConfigSectionCollection nodeList = customConfigSection.NodeList;
-            downloadUrls.AddRange(nodeList.Cast<CustomConfigSectionElement>());
+            DownloadUrlElementCollection nodeList = customConfigSection.NodeList;
+            downloadUrls.AddRange(nodeList.Cast<DownloadUrlElement>());
 
             return downloadUrls;
         }
