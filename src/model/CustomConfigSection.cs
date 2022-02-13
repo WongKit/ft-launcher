@@ -9,21 +9,25 @@ namespace FT_Launcher {
         [ConfigurationProperty("name", IsKey = true, IsRequired = true)]
         public string Name {
             get { return (string)this["name"]; }
+            set { this["name"] = value; }
         }
 
         [ConfigurationProperty("url", IsRequired = true)]
         public string Url {
             get { return (string)this["url"]; }
+            set { this["url"] = value; }
         }
 
         [ConfigurationProperty("launchFile")]
         public string LaunchFile {
             get { return (string)this["launchFile"]; }
+            set { this["launchFile"] = value; }
         }
 
         [ConfigurationProperty("launchArgs")]
         public string LaunchArgs {
             get { return (string)this["launchArgs"]; }
+            set { this["launchArgs"] = value; }
         }
     }
 

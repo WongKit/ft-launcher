@@ -26,9 +26,22 @@ namespace FT_Launcher {
 
         public static List<CustomConfigSectionElement> GetDownloadUrls() {
             List<CustomConfigSectionElement> downloadUrls = new List<CustomConfigSectionElement>();
+
+            string legacyUrl = GetSetting("updateUrl", "");
+            if (legacyUrl != "") {
+                CustomConfigSectionElement legacyConfig = new CustomConfigSectionElement();
+                legacyConfig.Name = "Default";
+                legacyConfig.Url = legacyUrl;
+                legacyConfig.LaunchFile = GetSetting("launchFile", "");
+                legacyConfig.LaunchArgs = GetSetting("launchFileArgs", "");
+                downloadUrls.Add(legacyConfig);
+            }
+            
             CustomConfigSection customConfigSection = (CustomConfigSection)ConfigurationManager.GetSection("customConfigSection");
             CustomConfigSectionCollection nodeList = customConfigSection.NodeList;
-            return nodeList.Cast<CustomConfigSectionElement>().ToList();
+            downloadUrls.AddRange(nodeList.Cast<CustomConfigSectionElement>());
+
+            return downloadUrls;
         }
 
         /// <summary>
