@@ -124,6 +124,7 @@ namespace FT_Launcher {
 
             TabClick(labelNews, null);
             webBrowserNews.Navigate(Settings.GetSetting("newsUrl", "about:blank"));
+            this.Text = Settings.GetSetting("title", "FT Launcher");
         }
 
         /// <summary>
