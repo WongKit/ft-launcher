@@ -37,7 +37,7 @@ In the `<downloadUrls>` section, you can add **up to 5** different updates serve
 
 The launcher checks the `<updateUrl>/files.md5` to determine which local files (relative to the launcher path) are missing or needed to be updated. Therefore, you need to upload all game/application files to a remote webserver along with the checksum file.
 
-You can generate the files.md5 by launching the FT_Launcher.exe **while holding the *Shift*-Key**. You will see an additional button "Create Checksum" that lets you select a directory and build the files.md5 for you.
+You can generate the files.md5 by launching the FT_Launcher.exe **while holding the *Shift*-Key**. You will see an additional button "Create Checksum" that lets you select a directory and build the files.md5 for you. Alternatively, you can drag a directory into the FT_Launcher.exe or pass its path via a command line argument.
 
 The launcher can also update itself, if it is part of the checksum list.
 

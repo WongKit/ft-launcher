@@ -93,9 +93,7 @@ namespace FT_Launcher {
 
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK) {
                 try {
-                    Logger.Write("Building checksum file in target directory...");
                     patcher.CreateChecksumList(folderBrowserDialog.SelectedPath);
-                    Logger.Write("Building checksum file completed");
                 } catch (Exception ex) {
                     Logger.Error(ex.Message);
                 }
@@ -155,6 +153,7 @@ namespace FT_Launcher {
             PrepareDownloadUrlElements();
 
             Logger.Write("Application startup");
+            ParseCommandLineArguments();
         }
 
 
@@ -174,6 +173,30 @@ namespace FT_Launcher {
             }
         }
 
+
+        private void ParseCommandLineArguments() {
+            string[] args = Environment.GetCommandLineArgs();
+
+            bool first = true;
+            foreach (string arg in args) {
+                if (first) {
+                    first = false;
+
+                } else {
+                    if (arg.StartsWith("-") || arg.StartsWith("/")) {
+
+                    } else {
+                        try {
+                            patcher.CreateChecksumList(arg);
+                        } catch (Exception ex) {
+                            Logger.Error(ex.Message);
+                        }
+                        TabClick(labelLog, null);
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Close application on clicking the x image
         /// </summary>
@@ -190,7 +213,7 @@ namespace FT_Launcher {
 
             for (int i = 0; i < 5; i++) {
                 RadioButton radioButton = null;
-                switch(i) {
+                switch (i) {
                     case 0: radioButton = radioButtonUpdateUrl1; break;
                     case 1: radioButton = radioButtonUpdateUrl2; break;
                     case 2: radioButton = radioButtonUpdateUrl3; break;

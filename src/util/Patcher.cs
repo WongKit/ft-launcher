@@ -64,6 +64,8 @@ class Patcher {
     /// </summary>
     /// <param name="directory">Path to the local directory</param>
     public void CreateChecksumList(string directory) {
+        Logger.Write("Building checksum file in target directory...");
+
         string checksumFile = directory + "/files.md5";
         if (File.Exists(checksumFile)) {
             File.Delete(checksumFile);
@@ -77,6 +79,8 @@ class Patcher {
             streamWriter.WriteLine(checksum.path + sep + checksum.size + sep + checksum.hash);
         }
         streamWriter.Close();
+
+        Logger.Write("Building checksum file completed");
     }
 
     /// <summary>
