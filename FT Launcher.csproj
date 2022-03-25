@@ -78,6 +78,7 @@
     <Compile Include="src\model\CustomConfigSection.cs" />
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\util\DropShadow.cs" />
     <Compile Include="src\util\Logger.cs" />
     <Compile Include="src\util\Patcher.cs" />
     <Compile Include="src\util\Settings.cs" />
@@ -105,6 +106,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\cursor.ani" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -115,8 +117,35 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
-    <None Include="Resources\activeTabBackground.png" />
+    <None Include="Resources\ui_mouse_over01.wav" />
+    <None Include="Resources\ui_mouse_click03.wav" />
+    <None Include="Resources\logo.png" />
+    <None Include="Resources\btn_settings_hover.png" />
+    <None Include="Resources\btn_settings_down.png" />
+    <None Include="Resources\btn_settings.png" />
+    <None Include="Resources\btn_register_hover.png" />
+    <None Include="Resources\btn_register_down.png" />
+    <None Include="Resources\btn_register.png" />
+    <None Include="Resources\btn_ranking_hover.png" />
+    <None Include="Resources\btn_ranking_down.png" />
+    <None Include="Resources\btn_ranking.png" />
+    <None Include="Resources\btn_news_hover.png" />
+    <None Include="Resources\btn_news_down.png" />
+    <None Include="Resources\btn_news.png" />
+    <None Include="Resources\btn_log_hover.png" />
+    <None Include="Resources\btn_log_down.png" />
+    <None Include="Resources\btn_log.png" />
+    <None Include="Resources\btn_launch_hover.png" />
+    <None Include="Resources\btn_launch_down.png" />
+    <None Include="Resources\btn_launch.png" />
+    <None Include="Resources\btn_discord_hover.png" />
+    <None Include="Resources\btn_discord_down.png" />
+    <None Include="Resources\btn_discord.png" />
+    <None Include="Resources\btn_close_hover.png" />
+    <None Include="Resources\btn_close_down.png" />
+    <None Include="Resources\btn_close.png" />
     <None Include="Resources\background.png" />
+    <None Include="Resources\activeTabBackground.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

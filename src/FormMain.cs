@@ -16,11 +16,13 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
+using FT_Launcher.Properties;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Media;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -36,9 +38,16 @@ namespace FT_Launcher {
         [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
+        //dll imports for loading animated cursor
+        [DllImport("user32.dll")]
+        static extern IntPtr CreateIconFromResourceEx(byte[] presbits, uint dwResSize, bool fIcon, uint dwVer, int cxDesired, int cyDesired, uint flags);
+
         private Patcher patcher = new Patcher();
         private HtmlElement webBrowserDocumentClickedElement;
         private List<DownloadUrlElement> downloadUrls;
+
+        private SoundPlayer soundPlayerHover = new SoundPlayer(FT_Launcher.Properties.Resources.ui_mouse_over01);
+        private SoundPlayer soundPlayerClick = new SoundPlayer(FT_Launcher.Properties.Resources.ui_mouse_click03);
 
         public FormMain() {
             InitializeComponent();
@@ -77,9 +86,9 @@ namespace FT_Launcher {
             if (e.Error != null) {
                 Logger.Error(e.Error.Message);
                 Logger.Progress(0);
-                TabClick(labelLog, null);
+                btn_log_Click(btn_log, null);
             }
-            buttonLaunch.Enabled = true;
+            //buttonLaunch.Enabled = true;
         }
 
         /// <summary>
@@ -89,7 +98,7 @@ namespace FT_Launcher {
         /// <param name="e"></param>
         private void ButtonCreateChecksum_Click(object sender, EventArgs e) {
             buttonCreateChecksum.Enabled = false;
-            TabClick(labelLog, null);
+            btn_log_Click(btn_log, null);
 
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK) {
                 try {
@@ -98,7 +107,6 @@ namespace FT_Launcher {
                     Logger.Error(ex.Message);
                 }
             }
-            buttonCreateChecksum.Enabled = true;
         }
 
         /// <summary>
@@ -107,8 +115,9 @@ namespace FT_Launcher {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonLaunch_Click(object sender, EventArgs e) {
-            buttonLaunch.Enabled = false;
-            backgroundWorkerLaunch.RunWorkerAsync();
+            if (!backgroundWorkerLaunch.IsBusy) {
+                backgroundWorkerLaunch.RunWorkerAsync();
+            }
         }
 
         /// <summary>
@@ -120,7 +129,19 @@ namespace FT_Launcher {
             Logger.TextBoxLog = textBoxLog;
             Logger.ProgressBar = progressBar;
 
-            TabClick(labelNews, null);
+            btn_news_Click(btn_news, null);
+
+            //Load animated cursor
+            byte[] cursorRes = Properties.Resources.cursor;
+            this.Cursor = new Cursor(CreateIconFromResourceEx(cursorRes, (uint)cursorRes.Length, false, 0x00030000, 49, 49, 0x00000000));
+
+        
+            //Add drop shadow to form
+            try {
+                (new DropShadow()).ApplyShadows(this);
+            } catch (Exception) {
+                //Ignore errors with Windows XP
+            }
         }
 
         /// <summary>
@@ -145,7 +166,7 @@ namespace FT_Launcher {
             if (ModifierKeys == Keys.Shift) {
             } else {
                 buttonCreateChecksum.Visible = false;
-                progressBar.Width = 569;
+                //progressBar.Width = 569;
             }
 
             webBrowserNews.Navigate(Settings.GetSetting("newsUrl", "about:blank"));
@@ -173,6 +194,12 @@ namespace FT_Launcher {
             }
         }
 
+        private void HidePanels() {
+            panelNews.Visible = false;
+            panelLog.Visible = false;
+            panelSettings.Visible = false;
+        }
+
 
         private void ParseCommandLineArguments() {
             string[] args = Environment.GetCommandLineArgs();
@@ -191,7 +218,7 @@ namespace FT_Launcher {
                         } catch (Exception ex) {
                             Logger.Error(ex.Message);
                         }
-                        TabClick(labelLog, null);
+                        btn_log_Click(btn_log, null);
                     }
                 }
             }
@@ -238,37 +265,6 @@ namespace FT_Launcher {
         }
 
         /// <summary>
-        /// Switch tabs
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TabClick(object sender, EventArgs e) {
-            Label label = (Label)sender;
-
-            panelNews.Visible = false;
-            panelLog.Visible = false;
-            panelSettings.Visible = false;
-
-            labelNews.BackColor = Color.Transparent;
-            labelLog.BackColor = Color.Transparent;
-            labelSettings.BackColor = Color.Transparent;
-            label.BackColor = Color.White;
-
-            Point point = new Point(label.Location.X - 7, pictureActiveTab.Location.Y);
-            pictureActiveTab.Location = point;
-
-            if (label == labelNews) {
-                panelNews.Visible = true;
-            } else if (label == labelLog) {
-                panelLog.Visible = true;
-                textBoxLog.SelectionStart = textBoxLog.TextLength;
-                textBoxLog.ScrollToCaret();
-            } else if (label == labelSettings) {
-                panelSettings.Visible = true;
-            }
-        }
-
-        /// <summary>
         /// Register mouse down event for the loaded web document. It is required to remember the clicked link
         /// </summary>
         /// <param name="sender"></param>
@@ -307,6 +303,53 @@ namespace FT_Launcher {
 
                 Logger.Write("Switch download server to " + downloadUrl.Name);
             }
+        }
+
+        private void imgBtn_MouseEnter(object sender, EventArgs e) {
+            PictureBox pb = ((PictureBox)sender);
+            pb.Image = (Bitmap)Resources.ResourceManager.GetObject(pb.Name + "_hover");
+            soundPlayerHover.Play();
+        }
+
+        private void imgBtn_MouseLeave(object sender, EventArgs e) {
+            PictureBox pb = ((PictureBox)sender);
+            pb.Image = (Bitmap)Resources.ResourceManager.GetObject(pb.Name);
+        }
+
+        private void imgBtn_MouseDown(object sender, MouseEventArgs e) {
+            PictureBox pb = ((PictureBox)sender);
+            pb.Image = (Bitmap)Resources.ResourceManager.GetObject(pb.Name + "_down");
+            soundPlayerClick.Play();
+        }
+
+        private void imgBtn_MouseUp(object sender, MouseEventArgs e) {
+            PictureBox pb = ((PictureBox)sender);
+            pb.Image = (Bitmap)Resources.ResourceManager.GetObject(pb.Name + "_hover");
+        }
+
+        private void btn_news_Click(object sender, EventArgs e) {
+            HidePanels();
+            panelNews.Visible = true;
+        }
+
+        private void btn_settings_Click(object sender, EventArgs e) {
+            HidePanels();
+            panelSettings.Visible = true;
+        }
+
+        private void btn_log_Click(object sender, EventArgs e) {
+            HidePanels();
+            panelLog.Visible = true;
+            textBoxLog.SelectionStart = textBoxLog.TextLength;
+            textBoxLog.ScrollToCaret();
+        }
+
+        private void btn_register_Click(object sender, EventArgs e) {
+            Process.Start(Settings.GetSetting("registerUrl"));
+        }
+
+        private void btn_discord_Click(object sender, EventArgs e) {
+            Process.Start(Settings.GetSetting("discordUrl"));
         }
     }
 }
