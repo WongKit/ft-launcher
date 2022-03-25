@@ -410,7 +410,7 @@ namespace FT_Launcher
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImage = global::FT_Launcher.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(960, 640);
             this.Controls.Add(this.panelNews);
             this.Controls.Add(this.panelLog);

@@ -145,7 +145,6 @@
     <None Include="Resources\btn_close_down.png" />
     <None Include="Resources\btn_close.png" />
     <None Include="Resources\background.png" />
-    <None Include="Resources\activeTabBackground.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
