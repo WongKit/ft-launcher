@@ -170,6 +170,8 @@ namespace FT_Launcher {
             }
 
             webBrowserNews.Navigate(Settings.GetSetting("newsUrl", "about:blank"));
+            webBrowserPanel.Navigate(Settings.GetSetting("panelUrl", "about:blank"));
+
             this.Text = Settings.GetSetting("title", "FT Launcher");
             PrepareDownloadUrlElements();
 
@@ -330,6 +332,7 @@ namespace FT_Launcher {
         private void btn_news_Click(object sender, EventArgs e) {
             HidePanels();
             panelNews.Visible = true;
+            webBrowserNews.Navigate(Settings.GetSetting("newsUrl", "about:blank"));
         }
 
         private void btn_settings_Click(object sender, EventArgs e) {
@@ -350,6 +353,12 @@ namespace FT_Launcher {
 
         private void btn_discord_Click(object sender, EventArgs e) {
             Process.Start(Settings.GetSetting("discordUrl"));
+        }
+
+        private void btn_ranking_Click(object sender, EventArgs e) {
+            HidePanels();
+            panelNews.Visible = true;
+            webBrowserNews.Navigate(Settings.GetSetting("rankingUrl", "about:blank"));
         }
     }
 }

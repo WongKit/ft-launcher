@@ -71,6 +71,7 @@ namespace FT_Launcher
             this.btn_register = new System.Windows.Forms.PictureBox();
             this.btn_discord = new System.Windows.Forms.PictureBox();
             this.logo = new System.Windows.Forms.PictureBox();
+            this.webBrowserPanel = new System.Windows.Forms.WebBrowser();
             this.panelNews.SuspendLayout();
             this.panelLog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -114,7 +115,7 @@ namespace FT_Launcher
             // 
             // panelLog
             // 
-            this.panelLog.BackColor = System.Drawing.Color.Transparent;
+            this.panelLog.BackColor = System.Drawing.Color.White;
             this.panelLog.Controls.Add(this.textBoxLog);
             this.panelLog.Location = new System.Drawing.Point(20, 110);
             this.panelLog.Name = "panelLog";
@@ -125,15 +126,15 @@ namespace FT_Launcher
             // 
             this.textBoxLog.BackColor = System.Drawing.Color.White;
             this.textBoxLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLog.Location = new System.Drawing.Point(0, 0);
+            this.textBoxLog.Location = new System.Drawing.Point(15, 0);
             this.textBoxLog.Multiline = true;
             this.textBoxLog.Name = "textBoxLog";
             this.textBoxLog.ReadOnly = true;
             this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxLog.Size = new System.Drawing.Size(650, 400);
+            this.textBoxLog.Size = new System.Drawing.Size(635, 400);
             this.textBoxLog.TabIndex = 0;
+            this.textBoxLog.Text = "\r\n";
             this.textBoxLog.WordWrap = false;
             // 
             // folderBrowserDialog
@@ -317,6 +318,7 @@ namespace FT_Launcher
             this.btn_ranking.Size = new System.Drawing.Size(66, 92);
             this.btn_ranking.TabIndex = 14;
             this.btn_ranking.TabStop = false;
+            this.btn_ranking.Click += new System.EventHandler(this.btn_ranking_Click);
             this.btn_ranking.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseDown);
             this.btn_ranking.MouseEnter += new System.EventHandler(this.imgBtn_MouseEnter);
             this.btn_ranking.MouseLeave += new System.EventHandler(this.imgBtn_MouseLeave);
@@ -393,12 +395,27 @@ namespace FT_Launcher
             this.logo.TabStop = false;
             this.logo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormMain_MouseDown);
             // 
+            // webBrowserPanel
+            // 
+            this.webBrowserPanel.AllowWebBrowserDrop = false;
+            this.webBrowserPanel.IsWebBrowserContextMenuEnabled = false;
+            this.webBrowserPanel.Location = new System.Drawing.Point(690, 110);
+            this.webBrowserPanel.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowserPanel.Name = "webBrowserPanel";
+            this.webBrowserPanel.ScriptErrorsSuppressed = true;
+            this.webBrowserPanel.Size = new System.Drawing.Size(252, 400);
+            this.webBrowserPanel.TabIndex = 20;
+            // 
             // FormMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(960, 640);
+            this.Controls.Add(this.panelNews);
+            this.Controls.Add(this.panelLog);
+            this.Controls.Add(this.panelSettings);
+            this.Controls.Add(this.webBrowserPanel);
             this.Controls.Add(this.logo);
             this.Controls.Add(this.btn_discord);
             this.Controls.Add(this.btn_register);
@@ -410,9 +427,6 @@ namespace FT_Launcher
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.buttonCreateChecksum);
             this.Controls.Add(this.btn_close);
-            this.Controls.Add(this.panelSettings);
-            this.Controls.Add(this.panelLog);
-            this.Controls.Add(this.panelNews);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -471,6 +485,7 @@ namespace FT_Launcher
         private System.Windows.Forms.PictureBox btn_ranking;
         private System.Windows.Forms.PictureBox btn_settings;
         private System.Windows.Forms.PictureBox logo;
+        private System.Windows.Forms.WebBrowser webBrowserPanel;
     }
 }
 
