@@ -276,13 +276,16 @@ class Patcher {
                 do {
                     line = stringReader.ReadLine();
                     if (line != null) {
-                        string[] split = line.Split(new char[] { sep }, 3);
-                        if (split.Length == 3) {
+                        string[] split = line.Split(new char[] { sep });
+                        if (split.Length >= 3) {
                             Checksum checksum = new Checksum();
                             checksum.path = split[0];
                             checksum.size = Convert.ToInt64(split[1]);
                             checksum.hash = split[2];
-                            checksums.Add(checksum);
+
+                            if (checksum.size >= 0) {
+                                checksums.Add(checksum);
+                            }
                         }
                     }
                 } while (line != null);
