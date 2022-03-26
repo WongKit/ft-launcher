@@ -88,7 +88,7 @@ namespace FT_Launcher {
                 Logger.Progress(0);
                 btn_log_Click(btn_log, null);
             }
-            //buttonLaunch.Enabled = true;
+            btn_launch.Enabled = true;
         }
 
         /// <summary>
@@ -116,6 +116,7 @@ namespace FT_Launcher {
         /// <param name="e"></param>
         private void ButtonLaunch_Click(object sender, EventArgs e) {
             if (!backgroundWorkerLaunch.IsBusy) {
+                btn_launch.Enabled = false;
                 backgroundWorkerLaunch.RunWorkerAsync();
             }
         }
@@ -309,24 +310,32 @@ namespace FT_Launcher {
 
         private void imgBtn_MouseEnter(object sender, EventArgs e) {
             PictureBox pb = ((PictureBox)sender);
-            pb.Image = (Bitmap)Resources.ResourceManager.GetObject(pb.Name + "_hover");
-            soundPlayerHover.Play();
+            if (pb.Enabled) {
+                pb.Image = (Bitmap)Resources.ResourceManager.GetObject(pb.Name + "_hover");
+                soundPlayerHover.Play();
+            }
         }
 
         private void imgBtn_MouseLeave(object sender, EventArgs e) {
             PictureBox pb = ((PictureBox)sender);
-            pb.Image = (Bitmap)Resources.ResourceManager.GetObject(pb.Name);
+            if (pb.Enabled) {
+                pb.Image = (Bitmap)Resources.ResourceManager.GetObject(pb.Name);
+            }
         }
 
         private void imgBtn_MouseDown(object sender, MouseEventArgs e) {
             PictureBox pb = ((PictureBox)sender);
-            pb.Image = (Bitmap)Resources.ResourceManager.GetObject(pb.Name + "_down");
-            soundPlayerClick.Play();
+            if (pb.Enabled) {
+                pb.Image = (Bitmap)Resources.ResourceManager.GetObject(pb.Name + "_down");
+                soundPlayerClick.Play();
+            }
         }
 
         private void imgBtn_MouseUp(object sender, MouseEventArgs e) {
             PictureBox pb = ((PictureBox)sender);
-            pb.Image = (Bitmap)Resources.ResourceManager.GetObject(pb.Name + "_hover");
+            if (pb.Enabled) {
+                pb.Image = (Bitmap)Resources.ResourceManager.GetObject(pb.Name + "_hover");
+            }
         }
 
         private void btn_news_Click(object sender, EventArgs e) {
@@ -359,6 +368,17 @@ namespace FT_Launcher {
             HidePanels();
             panelNews.Visible = true;
             webBrowserNews.Navigate(Settings.GetSetting("rankingUrl", "about:blank"));
+        }
+
+        private void imgBtn_EnabledChanged(object sender, EventArgs e) {
+            PictureBox pb = ((PictureBox)sender);
+            if (pb.Enabled) {
+                imgBtn_MouseLeave(sender, null);
+            } else {
+                imgBtn_MouseDown(sender, null);
+            }
+
+                
         }
     }
 }

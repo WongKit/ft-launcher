@@ -288,6 +288,7 @@ namespace FT_Launcher
             this.btn_launch.Size = new System.Drawing.Size(108, 108);
             this.btn_launch.TabIndex = 12;
             this.btn_launch.TabStop = false;
+            this.btn_launch.EnabledChanged += new System.EventHandler(this.imgBtn_EnabledChanged);
             this.btn_launch.Click += new System.EventHandler(this.ButtonLaunch_Click);
             this.btn_launch.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseDown);
             this.btn_launch.MouseEnter += new System.EventHandler(this.imgBtn_MouseEnter);
