@@ -22,10 +22,15 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
+using System.Threading;
 
 class Patcher {
     private const char sep = ';';
     private const string bak = ".bak";
+
+    private const int retryMax = 3;
+    private const int retryWait = 3000;
+    private int retryCount = 0;
 
     public bool RequiresRestart { get;  private set; }
 
@@ -180,6 +185,7 @@ class Patcher {
                     try {
                         File.Delete(targetFile);
                     } catch (Exception) {
+                        
                         try {
                             File.Move(targetFile, backupFile);
                         } catch (Exception) {
@@ -193,21 +199,32 @@ class Patcher {
                 if (!Directory.Exists(parentDirectory)) {
                     Directory.CreateDirectory(parentDirectory);
                 }
-                try {
-                    webClient.DownloadFile(sourceFile, targetFile);
+                retryCount = 0;
 
-                    if (!RequiresRestart) {
-                        if (targetFile == launcherPath || targetFile == launcherPath + ".config") {
-                            Logger.Write("Launcher is updated and requires a restart");
-                            RequiresRestart = true;
+                while (true) {
+                    try {
+                        webClient.DownloadFile(sourceFile, targetFile);
+
+                        if (!RequiresRestart) {
+                            if (targetFile == launcherPath || targetFile == launcherPath + ".config") {
+                                Logger.Write("Launcher is updated and requires a restart");
+                                RequiresRestart = true;
+                            }
+                        }
+
+                        processedSize += checksum.size;
+                        Logger.Progress(processedSize, totalSize);
+                        break;
+
+                    } catch (WebException ex) {
+                        if (retryCount < retryMax) {
+                            Logger.Write("Download failed. Try again...");
+                            Thread.Sleep(retryWait);
+                            retryCount++;
+                        } else {
+                            throw new Exception("Could not download file \"" + checksum.path + "\". " + ex.Message);
                         }
                     }
-
-                    processedSize += checksum.size;
-                    Logger.Progress(processedSize, totalSize);
-
-                } catch (WebException ex) {
-                    throw new Exception("Could not download file \"" + checksum.path + "\". " + ex.Message);
                 }
 
             }
@@ -260,15 +277,27 @@ class Patcher {
     /// <returns></returns>
     private List<Checksum> ReadChecksumFile(string checksumFile) {
         List<Checksum> checksums = new List<Checksum>();
+
+        retryCount = 0;
+
         using (var webClient = new WebClient()) {
             webClient.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
 
             string content;
 
-            try { 
-                content = webClient.DownloadString(checksumFile);
-            } catch (Exception) {
-                throw new WebException("Could not get remote checksum file: " + checksumFile);
+            while (true) {
+                try {
+                    content = webClient.DownloadString(checksumFile);
+                    break;
+                } catch (Exception) {
+                    if (retryCount < retryMax) {
+                        Logger.Write("Could not get remote checksum file. Try again...");
+                        Thread.Sleep(retryWait);
+                        retryCount++;
+                    } else {
+                        throw new WebException("Could not get remote checksum file: " + checksumFile);
+                    }
+                }
             }
 
             using (StringReader stringReader = new StringReader(content)) {
