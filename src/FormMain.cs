@@ -127,10 +127,10 @@ namespace FT_Launcher {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void FormMain_Load(object sender, EventArgs e) {
+            HidePanels();
+
             Logger.TextBoxLog = textBoxLog;
             Logger.ProgressBar = progressBar;
-
-            btn_news_Click(btn_news, null);
 
             //Load animated cursor
             byte[] cursorRes = Properties.Resources.cursor;
@@ -169,9 +169,6 @@ namespace FT_Launcher {
                 buttonCreateChecksum.Visible = false;
                 //progressBar.Width = 569;
             }
-
-            webBrowserNews.Navigate(Settings.GetSetting("newsUrl", "about:blank"));
-            webBrowserPanel.Navigate(Settings.GetSetting("panelUrl", "about:blank"));
 
             this.Text = Settings.GetSetting("title", "FT Launcher");
             PrepareDownloadUrlElements();
@@ -376,9 +373,18 @@ namespace FT_Launcher {
                 imgBtn_MouseLeave(sender, null);
             } else {
                 imgBtn_MouseDown(sender, null);
-            }
+            }              
+        }
 
-                
+        /// <summary>
+        /// Delay loading webpages on start for faster loading times
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void delayedLoad_Tick(object sender, EventArgs e) {
+            btn_news_Click(btn_news, null);
+            webBrowserPanel.Navigate(Settings.GetSetting("panelUrl", "about:blank"));
+            ((Timer)sender).Enabled = false;
         }
     }
 }

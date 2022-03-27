@@ -54,6 +54,7 @@ namespace FT_Launcher
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panelSettings = new System.Windows.Forms.Panel();
+            this.labelLanguage = new System.Windows.Forms.Label();
             this.radioButtonUpdateUrl1 = new System.Windows.Forms.RadioButton();
             this.radioButtonUpdateUrl2 = new System.Windows.Forms.RadioButton();
             this.radioButtonUpdateUrl3 = new System.Windows.Forms.RadioButton();
@@ -69,7 +70,7 @@ namespace FT_Launcher
             this.btn_register = new System.Windows.Forms.PictureBox();
             this.btn_discord = new System.Windows.Forms.PictureBox();
             this.webBrowserPanel = new System.Windows.Forms.WebBrowser();
-            this.labelLanguage = new System.Windows.Forms.Label();
+            this.delayedLoad = new System.Windows.Forms.Timer(this.components);
             this.panelNews.SuspendLayout();
             this.panelLog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -104,7 +105,6 @@ namespace FT_Launcher
             this.webBrowserNews.ScriptErrorsSuppressed = true;
             this.webBrowserNews.Size = new System.Drawing.Size(650, 400);
             this.webBrowserNews.TabIndex = 1;
-            this.webBrowserNews.Url = new System.Uri("", System.UriKind.Relative);
             this.webBrowserNews.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.WebBrowserNews_DocumentCompleted);
             this.webBrowserNews.NewWindow += new System.ComponentModel.CancelEventHandler(this.WebBrowserNews_NewWindow);
             // 
@@ -171,6 +171,15 @@ namespace FT_Launcher
             this.panelSettings.Name = "panelSettings";
             this.panelSettings.Size = new System.Drawing.Size(650, 400);
             this.panelSettings.TabIndex = 11;
+            // 
+            // labelLanguage
+            // 
+            this.labelLanguage.AutoSize = true;
+            this.labelLanguage.Location = new System.Drawing.Point(259, 116);
+            this.labelLanguage.Name = "labelLanguage";
+            this.labelLanguage.Size = new System.Drawing.Size(131, 13);
+            this.labelLanguage.TabIndex = 5;
+            this.labelLanguage.Text = "Select the audio language";
             // 
             // radioButtonUpdateUrl1
             // 
@@ -375,14 +384,11 @@ namespace FT_Launcher
             this.webBrowserPanel.Size = new System.Drawing.Size(252, 400);
             this.webBrowserPanel.TabIndex = 20;
             // 
-            // labelLanguage
+            // delayedLoad
             // 
-            this.labelLanguage.AutoSize = true;
-            this.labelLanguage.Location = new System.Drawing.Point(259, 116);
-            this.labelLanguage.Name = "labelLanguage";
-            this.labelLanguage.Size = new System.Drawing.Size(131, 13);
-            this.labelLanguage.TabIndex = 5;
-            this.labelLanguage.Text = "Select the audio language";
+            this.delayedLoad.Enabled = true;
+            this.delayedLoad.Interval = 500;
+            this.delayedLoad.Tick += new System.EventHandler(this.delayedLoad_Tick);
             // 
             // FormMain
             // 
@@ -457,6 +463,7 @@ namespace FT_Launcher
         private System.Windows.Forms.PictureBox btn_settings;
         private System.Windows.Forms.WebBrowser webBrowserPanel;
         private System.Windows.Forms.Label labelLanguage;
+        private System.Windows.Forms.Timer delayedLoad;
     }
 }
 
