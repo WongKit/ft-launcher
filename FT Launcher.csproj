@@ -117,9 +117,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
+    <None Include="Resources\background.png" />
+    <None Include="Resources\lang_thai.png" />
+    <None Include="Resources\lang_japanese.png" />
     <None Include="Resources\ui_mouse_over01.wav" />
     <None Include="Resources\ui_mouse_click03.wav" />
-    <None Include="Resources\logo.png" />
     <None Include="Resources\btn_settings_hover.png" />
     <None Include="Resources\btn_settings_down.png" />
     <None Include="Resources\btn_settings.png" />
@@ -144,7 +146,6 @@
     <None Include="Resources\btn_close_hover.png" />
     <None Include="Resources\btn_close_down.png" />
     <None Include="Resources\btn_close.png" />
-    <None Include="Resources\background.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
