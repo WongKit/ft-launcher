@@ -82,6 +82,9 @@
     <Compile Include="src\util\Logger.cs" />
     <Compile Include="src\util\Patcher.cs" />
     <Compile Include="src\util\Settings.cs" />
+    <Compile Include="src\util\TransparentPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="src\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
