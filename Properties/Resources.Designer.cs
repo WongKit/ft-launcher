@@ -153,6 +153,36 @@ namespace FT_Launcher.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap btn_exit {
+            get {
+                object obj = ResourceManager.GetObject("btn_exit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_exit_down {
+            get {
+                object obj = ResourceManager.GetObject("btn_exit_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_exit_hover {
+            get {
+                object obj = ResourceManager.GetObject("btn_exit_hover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btn_launch {
             get {
                 object obj = ResourceManager.GetObject("btn_launch", resourceCulture);
@@ -236,36 +266,6 @@ namespace FT_Launcher.Properties {
         internal static System.Drawing.Bitmap btn_news_hover {
             get {
                 object obj = ResourceManager.GetObject("btn_news_hover", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap btn_ranking {
-            get {
-                object obj = ResourceManager.GetObject("btn_ranking", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap btn_ranking_down {
-            get {
-                object obj = ResourceManager.GetObject("btn_ranking_down", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap btn_ranking_hover {
-            get {
-                object obj = ResourceManager.GetObject("btn_ranking_hover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

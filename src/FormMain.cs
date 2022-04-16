@@ -418,10 +418,10 @@ namespace FT_Launcher {
                 }
 
                 btn_discord.Invalidate();
+                btn_exit.Invalidate();
                 btn_launch.Invalidate();
                 btn_log.Invalidate();
                 btn_news.Invalidate();
-                btn_ranking.Invalidate();
                 btn_register.Invalidate();
                 btn_settings.Invalidate();
             }

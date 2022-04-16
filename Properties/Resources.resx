@@ -145,9 +145,6 @@
   <data name="btn_register" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btn_register.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btn_ranking_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_ranking_down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="btn_news_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btn_news_hover.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -175,9 +172,6 @@
   <data name="btn_news_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btn_news_down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btn_ranking" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_ranking.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ui_mouse_click03" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ui_mouse_click03.wav;System.IO.MemoryStream, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -192,9 +186,6 @@
   </data>
   <data name="btn_settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btn_settings.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btn_ranking_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_ranking_hover.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="btn_discord_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btn_discord_hover.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -213,5 +204,14 @@
   </data>
   <data name="background_loading_glow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\background_loading_glow.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_exit.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_exit_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_exit_down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_exit_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_exit_hover.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

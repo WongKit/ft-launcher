@@ -120,6 +120,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
+    <None Include="Resources\btn_exit_hover.png" />
+    <None Include="Resources\btn_exit_down.png" />
+    <None Include="Resources\btn_exit.png" />
     <None Include="Resources\background_loading_glow.png" />
     <None Include="Resources\background_loading.png" />
     <None Include="Resources\background.png" />

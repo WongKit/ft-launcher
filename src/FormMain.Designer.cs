@@ -69,10 +69,10 @@ namespace FT_Launcher
             this.btn_register = new FT_Launcher.TransparentPictureBox();
             this.btn_log = new FT_Launcher.TransparentPictureBox();
             this.btn_news = new FT_Launcher.TransparentPictureBox();
-            this.btn_ranking = new FT_Launcher.TransparentPictureBox();
             this.btn_settings = new FT_Launcher.TransparentPictureBox();
             this.btn_launch = new FT_Launcher.TransparentPictureBox();
             this.loadingBarGlow = new FT_Launcher.TransparentPictureBox();
+            this.btn_exit = new FT_Launcher.TransparentPictureBox();
             this.panelNews.SuspendLayout();
             this.panelLog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -83,10 +83,10 @@ namespace FT_Launcher
             ((System.ComponentModel.ISupportInitialize)(this.btn_register)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_log)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_news)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_ranking)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_settings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_launch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadingBarGlow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_exit)).BeginInit();
             this.SuspendLayout();
             // 
             // panelNews
@@ -286,7 +286,7 @@ namespace FT_Launcher
             this.loadingBar.Image = global::FT_Launcher.Properties.Resources.background_loading;
             this.loadingBar.Location = new System.Drawing.Point(0, 612);
             this.loadingBar.Name = "loadingBar";
-            this.loadingBar.Size = new System.Drawing.Size(960, 28);
+            this.loadingBar.Size = new System.Drawing.Size(128, 28);
             this.loadingBar.TabIndex = 21;
             this.loadingBar.TabStop = false;
             // 
@@ -300,7 +300,7 @@ namespace FT_Launcher
             // 
             this.btn_discord.BackColor = System.Drawing.Color.Transparent;
             this.btn_discord.Image = global::FT_Launcher.Properties.Resources.btn_discord;
-            this.btn_discord.Location = new System.Drawing.Point(705, 540);
+            this.btn_discord.Location = new System.Drawing.Point(628, 540);
             this.btn_discord.Name = "btn_discord";
             this.btn_discord.Size = new System.Drawing.Size(66, 92);
             this.btn_discord.TabIndex = 18;
@@ -315,7 +315,7 @@ namespace FT_Launcher
             // 
             this.btn_register.BackColor = System.Drawing.Color.Transparent;
             this.btn_register.Image = global::FT_Launcher.Properties.Resources.btn_register;
-            this.btn_register.Location = new System.Drawing.Point(627, 540);
+            this.btn_register.Location = new System.Drawing.Point(551, 540);
             this.btn_register.Name = "btn_register";
             this.btn_register.Size = new System.Drawing.Size(66, 92);
             this.btn_register.TabIndex = 17;
@@ -330,7 +330,7 @@ namespace FT_Launcher
             // 
             this.btn_log.BackColor = System.Drawing.Color.Transparent;
             this.btn_log.Image = global::FT_Launcher.Properties.Resources.btn_log;
-            this.btn_log.Location = new System.Drawing.Point(557, 540);
+            this.btn_log.Location = new System.Drawing.Point(264, 540);
             this.btn_log.Name = "btn_log";
             this.btn_log.Size = new System.Drawing.Size(66, 92);
             this.btn_log.TabIndex = 16;
@@ -355,21 +355,6 @@ namespace FT_Launcher
             this.btn_news.MouseEnter += new System.EventHandler(this.imgBtn_MouseEnter);
             this.btn_news.MouseLeave += new System.EventHandler(this.imgBtn_MouseLeave);
             this.btn_news.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseUp);
-            // 
-            // btn_ranking
-            // 
-            this.btn_ranking.BackColor = System.Drawing.Color.Transparent;
-            this.btn_ranking.Image = global::FT_Launcher.Properties.Resources.btn_ranking;
-            this.btn_ranking.Location = new System.Drawing.Point(263, 540);
-            this.btn_ranking.Name = "btn_ranking";
-            this.btn_ranking.Size = new System.Drawing.Size(66, 92);
-            this.btn_ranking.TabIndex = 14;
-            this.btn_ranking.TabStop = false;
-            this.btn_ranking.Click += new System.EventHandler(this.btn_ranking_Click);
-            this.btn_ranking.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseDown);
-            this.btn_ranking.MouseEnter += new System.EventHandler(this.imgBtn_MouseEnter);
-            this.btn_ranking.MouseLeave += new System.EventHandler(this.imgBtn_MouseLeave);
-            this.btn_ranking.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseUp);
             // 
             // btn_settings
             // 
@@ -406,11 +391,26 @@ namespace FT_Launcher
             // 
             this.loadingBarGlow.BackColor = System.Drawing.Color.Transparent;
             this.loadingBarGlow.Image = global::FT_Launcher.Properties.Resources.background_loading_glow;
-            this.loadingBarGlow.Location = new System.Drawing.Point(1, 602);
+            this.loadingBarGlow.Location = new System.Drawing.Point(128, 602);
             this.loadingBarGlow.Name = "loadingBarGlow";
             this.loadingBarGlow.Size = new System.Drawing.Size(2, 37);
             this.loadingBarGlow.TabIndex = 22;
             this.loadingBarGlow.TabStop = false;
+            // 
+            // btn_exit
+            // 
+            this.btn_exit.BackColor = System.Drawing.Color.Transparent;
+            this.btn_exit.Image = global::FT_Launcher.Properties.Resources.btn_exit;
+            this.btn_exit.Location = new System.Drawing.Point(708, 540);
+            this.btn_exit.Name = "btn_exit";
+            this.btn_exit.Size = new System.Drawing.Size(66, 92);
+            this.btn_exit.TabIndex = 23;
+            this.btn_exit.TabStop = false;
+            this.btn_exit.Click += new System.EventHandler(this.PictureClose_Click);
+            this.btn_exit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseDown);
+            this.btn_exit.MouseEnter += new System.EventHandler(this.imgBtn_MouseEnter);
+            this.btn_exit.MouseLeave += new System.EventHandler(this.imgBtn_MouseLeave);
+            this.btn_exit.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseUp);
             // 
             // FormMain
             // 
@@ -426,13 +426,14 @@ namespace FT_Launcher
             this.Controls.Add(this.btn_register);
             this.Controls.Add(this.btn_log);
             this.Controls.Add(this.btn_news);
-            this.Controls.Add(this.btn_ranking);
             this.Controls.Add(this.btn_settings);
             this.Controls.Add(this.btn_launch);
+            this.Controls.Add(this.btn_exit);
             this.Controls.Add(this.buttonCreateChecksum);
             this.Controls.Add(this.btn_close);
             this.Controls.Add(this.loadingBarGlow);
             this.Controls.Add(this.loadingBar);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
@@ -452,10 +453,10 @@ namespace FT_Launcher
             ((System.ComponentModel.ISupportInitialize)(this.btn_register)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_log)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_news)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_ranking)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_settings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_launch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadingBarGlow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_exit)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -486,10 +487,10 @@ namespace FT_Launcher
         private TransparentPictureBox btn_register;
         private TransparentPictureBox btn_log;
         private TransparentPictureBox btn_news;
-        private TransparentPictureBox btn_ranking;
         private TransparentPictureBox btn_settings;
         private System.Windows.Forms.Timer timerLoadingBar;
         private TransparentPictureBox loadingBarGlow;
+        private TransparentPictureBox btn_exit;
     }
 }
 
