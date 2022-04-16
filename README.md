@@ -6,7 +6,7 @@ The **FT Launcher** is an open source project to replace the original launcher/p
 
 It is heavily inspired by the discontinued **Phoenix Fastload Advanced** launcher, that I released in 2009 when the game was still active.
 
-As a result of the [JFTSE - Java Fantasy Tennis Server Emulator](https://github.com/sstokic-tgm/JFTSE) progress, I completely rebuild the launchers core functions using C# and Windows Forms while also keeping its original style.
+As a result of the [JFTSE - Java Fantasy Tennis Server Emulator](https://github.com/sstokic-tgm/JFTSE) progress, I completely rebuild the launchers core functions using C# and Windows Forms while also keeping its original style for the first releases.
 
 ![FT Launcher Screenshot](misc/launcher-screenshot.png)
 
@@ -37,7 +37,7 @@ In the `<downloadUrls>` section, you can add **up to 5** different updates serve
 
 The launcher checks the `<updateUrl>/files.md5` to determine which local files (relative to the launcher path) are missing or needed to be updated. Therefore, you need to upload all game/application files to a remote webserver along with the checksum file.
 
-You can generate the files.md5 by launching the FT_Launcher.exe **while holding the *Shift*-Key**. You will see an additional button "Create Checksum" that lets you select a directory and build the files.md5 for you. Alternatively, you can drag a directory into the FT_Launcher.exe or pass its path via a command line argument.
+You can generate the files.md5 by dragging a directory into the FT_Launcher.exe or execute it with the directory path as a command line argument. Alternatively, you can start the application **while holding the *Shift*-Key**. You will see an additional button "Create Checksum" that lets you select a directory and build the files.md5 for you.
 
 The launcher can also update itself, if it is part of the checksum list.
 
