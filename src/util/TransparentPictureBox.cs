@@ -16,6 +16,7 @@ namespace FT_Launcher {
                 using (var bmp = new Bitmap(Parent.Width, Parent.Height)) {
                     Parent.Controls.Cast<Control>()
                           .Where(c => Parent.Controls.GetChildIndex(c) > Parent.Controls.GetChildIndex(this))
+                          .Where(c => c.Visible)
                           .Where(c => c.Bounds.IntersectsWith(this.Bounds))
                           .OrderByDescending(c => Parent.Controls.GetChildIndex(c))
                           .ToList()

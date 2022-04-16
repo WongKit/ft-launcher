@@ -16,6 +16,7 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
+using FT_Launcher;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -111,7 +112,7 @@ class Patcher {
     private List<Checksum> CompareChecksumWithLocal(string targetDirectory, List<Checksum> checksums) {
         List<Checksum> different = new List<Checksum>();
 
-        Logger.Progress(0);
+        FormMain.SetLoadingBarProgress(0);
         long totalSize = checksums.Sum(c => c.size);
         long checkedSize = 0;
 
@@ -145,7 +146,7 @@ class Patcher {
             } catch (Exception) { }
 
             checkedSize += checksum.size;
-            Logger.Progress(checkedSize, totalSize);
+            FormMain.SetLoadingBarProgress(checkedSize, totalSize);
         }
 
         return different;
@@ -165,7 +166,7 @@ class Patcher {
 
         string launcherPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
 
-        Logger.Progress(0);
+        FormMain.SetLoadingBarProgress(0);
         long totalSize = checksums.Sum(c => c.size);
         long processedSize = 0;
 
@@ -213,7 +214,7 @@ class Patcher {
                         }
 
                         processedSize += checksum.size;
-                        Logger.Progress(processedSize, totalSize);
+                        FormMain.SetLoadingBarProgress(processedSize, totalSize);
                         break;
 
                     } catch (WebException ex) {

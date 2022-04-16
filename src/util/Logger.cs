@@ -21,7 +21,6 @@ using System.Windows.Forms;
 
 class Logger {
 
-    public static ProgressBar ProgressBar { private get; set; }
     public static TextBox TextBoxLog { private get; set; }
 
     /// <summary>
@@ -30,31 +29,6 @@ class Logger {
     /// <param name="obj">Message text</param>
     public static void Error(object obj) {
         Write("[ERROR] " + obj);
-    }
-
-    /// <summary>
-    /// Sets the progress bar to a specific value
-    /// </summary>
-    /// <param name="current">Progress value (0-100)</param>
-    public static void Progress(int current) {
-        Progress(current, 100);
-    }
-
-    /// <summary>
-    /// Sets the progress bar to a specific value
-    /// </summary>
-    /// <param name="current">Progress value</param>
-    /// <param name="max">Progress max</param>
-    public static void Progress(long current, long max) {
-        if (ProgressBar != null) {
-            ProgressBar.Invoke((MethodInvoker)delegate {
-                if (max == 0) {
-                    ProgressBar.Value = 0;
-                } else {
-                    ProgressBar.Value = Convert.ToInt32((float)current / (float)max * 100F);
-                }
-            });
-        }
     }
 
     /// <summary>

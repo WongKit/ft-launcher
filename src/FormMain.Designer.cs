@@ -51,7 +51,6 @@ namespace FT_Launcher
             this.textBoxLog = new System.Windows.Forms.TextBox();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.buttonCreateChecksum = new System.Windows.Forms.Button();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panelSettings = new System.Windows.Forms.Panel();
             this.labelLanguage = new System.Windows.Forms.Label();
@@ -62,27 +61,32 @@ namespace FT_Launcher
             this.radioButtonUpdateUrl4 = new System.Windows.Forms.RadioButton();
             this.backgroundWorkerLaunch = new System.ComponentModel.BackgroundWorker();
             this.btn_close = new System.Windows.Forms.PictureBox();
-            this.btn_launch = new TransparentPictureBox();
-            this.btn_settings = new TransparentPictureBox();
-            this.btn_ranking = new TransparentPictureBox();
-            this.btn_news = new TransparentPictureBox();
-            this.btn_log = new TransparentPictureBox();
-            this.btn_register = new TransparentPictureBox();
-            this.btn_discord = new TransparentPictureBox();
             this.webBrowserPanel = new System.Windows.Forms.WebBrowser();
             this.delayedLoad = new System.Windows.Forms.Timer(this.components);
+            this.loadingBar = new System.Windows.Forms.PictureBox();
+            this.timerLoadingBar = new System.Windows.Forms.Timer(this.components);
+            this.btn_discord = new FT_Launcher.TransparentPictureBox();
+            this.btn_register = new FT_Launcher.TransparentPictureBox();
+            this.btn_log = new FT_Launcher.TransparentPictureBox();
+            this.btn_news = new FT_Launcher.TransparentPictureBox();
+            this.btn_ranking = new FT_Launcher.TransparentPictureBox();
+            this.btn_settings = new FT_Launcher.TransparentPictureBox();
+            this.btn_launch = new FT_Launcher.TransparentPictureBox();
+            this.loadingBarGlow = new FT_Launcher.TransparentPictureBox();
             this.panelNews.SuspendLayout();
             this.panelLog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panelSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_close)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_launch)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_settings)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_ranking)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_news)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_log)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_register)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loadingBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_discord)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_register)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_log)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_news)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_ranking)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_settings)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_launch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loadingBarGlow)).BeginInit();
             this.SuspendLayout();
             // 
             // panelNews
@@ -138,21 +142,13 @@ namespace FT_Launcher
             // 
             // buttonCreateChecksum
             // 
-            this.buttonCreateChecksum.Location = new System.Drawing.Point(834, 556);
+            this.buttonCreateChecksum.Location = new System.Drawing.Point(832, 572);
             this.buttonCreateChecksum.Name = "buttonCreateChecksum";
             this.buttonCreateChecksum.Size = new System.Drawing.Size(111, 25);
             this.buttonCreateChecksum.TabIndex = 6;
             this.buttonCreateChecksum.Text = "Create Checksum";
             this.buttonCreateChecksum.UseVisualStyleBackColor = true;
             this.buttonCreateChecksum.Click += new System.EventHandler(this.ButtonCreateChecksum_Click);
-            // 
-            // progressBar
-            // 
-            this.progressBar.Location = new System.Drawing.Point(834, 587);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(111, 23);
-            this.progressBar.TabIndex = 7;
-            this.progressBar.Visible = false;
             // 
             // errorProvider1
             // 
@@ -177,7 +173,7 @@ namespace FT_Launcher
             this.labelLanguage.AutoSize = true;
             this.labelLanguage.Location = new System.Drawing.Point(259, 116);
             this.labelLanguage.Name = "labelLanguage";
-            this.labelLanguage.Size = new System.Drawing.Size(131, 13);
+            this.labelLanguage.Size = new System.Drawing.Size(173, 17);
             this.labelLanguage.TabIndex = 5;
             this.labelLanguage.Text = "Select the audio language";
             // 
@@ -214,7 +210,7 @@ namespace FT_Launcher
             this.radioButtonUpdateUrl3.AutoSize = true;
             this.radioButtonUpdateUrl3.Location = new System.Drawing.Point(274, 297);
             this.radioButtonUpdateUrl3.Name = "radioButtonUpdateUrl3";
-            this.radioButtonUpdateUrl3.Size = new System.Drawing.Size(116, 17);
+            this.radioButtonUpdateUrl3.Size = new System.Drawing.Size(149, 21);
             this.radioButtonUpdateUrl3.TabIndex = 2;
             this.radioButtonUpdateUrl3.TabStop = true;
             this.radioButtonUpdateUrl3.Text = "Download Server 3";
@@ -226,7 +222,7 @@ namespace FT_Launcher
             this.radioButtonUpdateUrl5.AutoSize = true;
             this.radioButtonUpdateUrl5.Location = new System.Drawing.Point(274, 343);
             this.radioButtonUpdateUrl5.Name = "radioButtonUpdateUrl5";
-            this.radioButtonUpdateUrl5.Size = new System.Drawing.Size(116, 17);
+            this.radioButtonUpdateUrl5.Size = new System.Drawing.Size(149, 21);
             this.radioButtonUpdateUrl5.TabIndex = 4;
             this.radioButtonUpdateUrl5.TabStop = true;
             this.radioButtonUpdateUrl5.Text = "Download Server 5";
@@ -238,7 +234,7 @@ namespace FT_Launcher
             this.radioButtonUpdateUrl4.AutoSize = true;
             this.radioButtonUpdateUrl4.Location = new System.Drawing.Point(274, 320);
             this.radioButtonUpdateUrl4.Name = "radioButtonUpdateUrl4";
-            this.radioButtonUpdateUrl4.Size = new System.Drawing.Size(116, 17);
+            this.radioButtonUpdateUrl4.Size = new System.Drawing.Size(149, 21);
             this.radioButtonUpdateUrl4.TabIndex = 3;
             this.radioButtonUpdateUrl4.TabStop = true;
             this.radioButtonUpdateUrl4.Text = "Download Server 4";
@@ -267,112 +263,6 @@ namespace FT_Launcher
             this.btn_close.MouseLeave += new System.EventHandler(this.imgBtn_MouseLeave);
             this.btn_close.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseUp);
             // 
-            // btn_launch
-            // 
-            this.btn_launch.BackColor = System.Drawing.Color.Transparent;
-            this.btn_launch.Image = global::FT_Launcher.Properties.Resources.btn_launch;
-            this.btn_launch.Location = new System.Drawing.Point(427, 525);
-            this.btn_launch.Name = "btn_launch";
-            this.btn_launch.Size = new System.Drawing.Size(108, 108);
-            this.btn_launch.TabIndex = 12;
-            this.btn_launch.TabStop = false;
-            this.btn_launch.EnabledChanged += new System.EventHandler(this.imgBtn_EnabledChanged);
-            this.btn_launch.Click += new System.EventHandler(this.ButtonLaunch_Click);
-            this.btn_launch.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseDown);
-            this.btn_launch.MouseEnter += new System.EventHandler(this.imgBtn_MouseEnter);
-            this.btn_launch.MouseLeave += new System.EventHandler(this.imgBtn_MouseLeave);
-            this.btn_launch.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseUp);
-            // 
-            // btn_settings
-            // 
-            this.btn_settings.BackColor = System.Drawing.Color.Transparent;
-            this.btn_settings.Image = global::FT_Launcher.Properties.Resources.btn_settings;
-            this.btn_settings.Location = new System.Drawing.Point(344, 540);
-            this.btn_settings.Name = "btn_settings";
-            this.btn_settings.Size = new System.Drawing.Size(66, 92);
-            this.btn_settings.TabIndex = 13;
-            this.btn_settings.TabStop = false;
-            this.btn_settings.Click += new System.EventHandler(this.btn_settings_Click);
-            this.btn_settings.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseDown);
-            this.btn_settings.MouseEnter += new System.EventHandler(this.imgBtn_MouseEnter);
-            this.btn_settings.MouseLeave += new System.EventHandler(this.imgBtn_MouseLeave);
-            this.btn_settings.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseUp);
-            // 
-            // btn_ranking
-            // 
-            this.btn_ranking.BackColor = System.Drawing.Color.Transparent;
-            this.btn_ranking.Image = global::FT_Launcher.Properties.Resources.btn_ranking;
-            this.btn_ranking.Location = new System.Drawing.Point(263, 540);
-            this.btn_ranking.Name = "btn_ranking";
-            this.btn_ranking.Size = new System.Drawing.Size(66, 92);
-            this.btn_ranking.TabIndex = 14;
-            this.btn_ranking.TabStop = false;
-            this.btn_ranking.Click += new System.EventHandler(this.btn_ranking_Click);
-            this.btn_ranking.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseDown);
-            this.btn_ranking.MouseEnter += new System.EventHandler(this.imgBtn_MouseEnter);
-            this.btn_ranking.MouseLeave += new System.EventHandler(this.imgBtn_MouseLeave);
-            this.btn_ranking.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseUp);
-            // 
-            // btn_news
-            // 
-            this.btn_news.BackColor = System.Drawing.Color.Transparent;
-            this.btn_news.Image = global::FT_Launcher.Properties.Resources.btn_news;
-            this.btn_news.Location = new System.Drawing.Point(182, 540);
-            this.btn_news.Name = "btn_news";
-            this.btn_news.Size = new System.Drawing.Size(66, 92);
-            this.btn_news.TabIndex = 15;
-            this.btn_news.TabStop = false;
-            this.btn_news.Click += new System.EventHandler(this.btn_news_Click);
-            this.btn_news.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseDown);
-            this.btn_news.MouseEnter += new System.EventHandler(this.imgBtn_MouseEnter);
-            this.btn_news.MouseLeave += new System.EventHandler(this.imgBtn_MouseLeave);
-            this.btn_news.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseUp);
-            // 
-            // btn_log
-            // 
-            this.btn_log.BackColor = System.Drawing.Color.Transparent;
-            this.btn_log.Image = global::FT_Launcher.Properties.Resources.btn_log;
-            this.btn_log.Location = new System.Drawing.Point(557, 540);
-            this.btn_log.Name = "btn_log";
-            this.btn_log.Size = new System.Drawing.Size(66, 92);
-            this.btn_log.TabIndex = 16;
-            this.btn_log.TabStop = false;
-            this.btn_log.Click += new System.EventHandler(this.btn_log_Click);
-            this.btn_log.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseDown);
-            this.btn_log.MouseEnter += new System.EventHandler(this.imgBtn_MouseEnter);
-            this.btn_log.MouseLeave += new System.EventHandler(this.imgBtn_MouseLeave);
-            this.btn_log.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseUp);
-            // 
-            // btn_register
-            // 
-            this.btn_register.BackColor = System.Drawing.Color.Transparent;
-            this.btn_register.Image = global::FT_Launcher.Properties.Resources.btn_register;
-            this.btn_register.Location = new System.Drawing.Point(627, 540);
-            this.btn_register.Name = "btn_register";
-            this.btn_register.Size = new System.Drawing.Size(66, 92);
-            this.btn_register.TabIndex = 17;
-            this.btn_register.TabStop = false;
-            this.btn_register.Click += new System.EventHandler(this.btn_register_Click);
-            this.btn_register.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseDown);
-            this.btn_register.MouseEnter += new System.EventHandler(this.imgBtn_MouseEnter);
-            this.btn_register.MouseLeave += new System.EventHandler(this.imgBtn_MouseLeave);
-            this.btn_register.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseUp);
-            // 
-            // btn_discord
-            // 
-            this.btn_discord.BackColor = System.Drawing.Color.Transparent;
-            this.btn_discord.Image = global::FT_Launcher.Properties.Resources.btn_discord;
-            this.btn_discord.Location = new System.Drawing.Point(705, 540);
-            this.btn_discord.Name = "btn_discord";
-            this.btn_discord.Size = new System.Drawing.Size(66, 92);
-            this.btn_discord.TabIndex = 18;
-            this.btn_discord.TabStop = false;
-            this.btn_discord.Click += new System.EventHandler(this.btn_discord_Click);
-            this.btn_discord.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseDown);
-            this.btn_discord.MouseEnter += new System.EventHandler(this.imgBtn_MouseEnter);
-            this.btn_discord.MouseLeave += new System.EventHandler(this.imgBtn_MouseLeave);
-            this.btn_discord.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseUp);
-            // 
             // webBrowserPanel
             // 
             this.webBrowserPanel.AllowWebBrowserDrop = false;
@@ -389,6 +279,138 @@ namespace FT_Launcher
             this.delayedLoad.Enabled = true;
             this.delayedLoad.Interval = 500;
             this.delayedLoad.Tick += new System.EventHandler(this.delayedLoad_Tick);
+            // 
+            // loadingBar
+            // 
+            this.loadingBar.BackColor = System.Drawing.Color.Transparent;
+            this.loadingBar.Image = global::FT_Launcher.Properties.Resources.background_loading;
+            this.loadingBar.Location = new System.Drawing.Point(0, 612);
+            this.loadingBar.Name = "loadingBar";
+            this.loadingBar.Size = new System.Drawing.Size(960, 28);
+            this.loadingBar.TabIndex = 21;
+            this.loadingBar.TabStop = false;
+            // 
+            // timerLoadingBar
+            // 
+            this.timerLoadingBar.Enabled = true;
+            this.timerLoadingBar.Interval = 200;
+            this.timerLoadingBar.Tick += new System.EventHandler(this.timerLoadingBar_Tick);
+            // 
+            // btn_discord
+            // 
+            this.btn_discord.BackColor = System.Drawing.Color.Transparent;
+            this.btn_discord.Image = global::FT_Launcher.Properties.Resources.btn_discord;
+            this.btn_discord.Location = new System.Drawing.Point(705, 540);
+            this.btn_discord.Name = "btn_discord";
+            this.btn_discord.Size = new System.Drawing.Size(66, 92);
+            this.btn_discord.TabIndex = 18;
+            this.btn_discord.TabStop = false;
+            this.btn_discord.Click += new System.EventHandler(this.btn_discord_Click);
+            this.btn_discord.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseDown);
+            this.btn_discord.MouseEnter += new System.EventHandler(this.imgBtn_MouseEnter);
+            this.btn_discord.MouseLeave += new System.EventHandler(this.imgBtn_MouseLeave);
+            this.btn_discord.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseUp);
+            // 
+            // btn_register
+            // 
+            this.btn_register.BackColor = System.Drawing.Color.Transparent;
+            this.btn_register.Image = global::FT_Launcher.Properties.Resources.btn_register;
+            this.btn_register.Location = new System.Drawing.Point(627, 540);
+            this.btn_register.Name = "btn_register";
+            this.btn_register.Size = new System.Drawing.Size(66, 92);
+            this.btn_register.TabIndex = 17;
+            this.btn_register.TabStop = false;
+            this.btn_register.Click += new System.EventHandler(this.btn_register_Click);
+            this.btn_register.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseDown);
+            this.btn_register.MouseEnter += new System.EventHandler(this.imgBtn_MouseEnter);
+            this.btn_register.MouseLeave += new System.EventHandler(this.imgBtn_MouseLeave);
+            this.btn_register.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseUp);
+            // 
+            // btn_log
+            // 
+            this.btn_log.BackColor = System.Drawing.Color.Transparent;
+            this.btn_log.Image = global::FT_Launcher.Properties.Resources.btn_log;
+            this.btn_log.Location = new System.Drawing.Point(557, 540);
+            this.btn_log.Name = "btn_log";
+            this.btn_log.Size = new System.Drawing.Size(66, 92);
+            this.btn_log.TabIndex = 16;
+            this.btn_log.TabStop = false;
+            this.btn_log.Click += new System.EventHandler(this.btn_log_Click);
+            this.btn_log.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseDown);
+            this.btn_log.MouseEnter += new System.EventHandler(this.imgBtn_MouseEnter);
+            this.btn_log.MouseLeave += new System.EventHandler(this.imgBtn_MouseLeave);
+            this.btn_log.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseUp);
+            // 
+            // btn_news
+            // 
+            this.btn_news.BackColor = System.Drawing.Color.Transparent;
+            this.btn_news.Image = global::FT_Launcher.Properties.Resources.btn_news;
+            this.btn_news.Location = new System.Drawing.Point(182, 540);
+            this.btn_news.Name = "btn_news";
+            this.btn_news.Size = new System.Drawing.Size(66, 92);
+            this.btn_news.TabIndex = 15;
+            this.btn_news.TabStop = false;
+            this.btn_news.Click += new System.EventHandler(this.btn_news_Click);
+            this.btn_news.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseDown);
+            this.btn_news.MouseEnter += new System.EventHandler(this.imgBtn_MouseEnter);
+            this.btn_news.MouseLeave += new System.EventHandler(this.imgBtn_MouseLeave);
+            this.btn_news.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseUp);
+            // 
+            // btn_ranking
+            // 
+            this.btn_ranking.BackColor = System.Drawing.Color.Transparent;
+            this.btn_ranking.Image = global::FT_Launcher.Properties.Resources.btn_ranking;
+            this.btn_ranking.Location = new System.Drawing.Point(263, 540);
+            this.btn_ranking.Name = "btn_ranking";
+            this.btn_ranking.Size = new System.Drawing.Size(66, 92);
+            this.btn_ranking.TabIndex = 14;
+            this.btn_ranking.TabStop = false;
+            this.btn_ranking.Click += new System.EventHandler(this.btn_ranking_Click);
+            this.btn_ranking.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseDown);
+            this.btn_ranking.MouseEnter += new System.EventHandler(this.imgBtn_MouseEnter);
+            this.btn_ranking.MouseLeave += new System.EventHandler(this.imgBtn_MouseLeave);
+            this.btn_ranking.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseUp);
+            // 
+            // btn_settings
+            // 
+            this.btn_settings.BackColor = System.Drawing.Color.Transparent;
+            this.btn_settings.Image = global::FT_Launcher.Properties.Resources.btn_settings;
+            this.btn_settings.Location = new System.Drawing.Point(344, 540);
+            this.btn_settings.Name = "btn_settings";
+            this.btn_settings.Size = new System.Drawing.Size(66, 92);
+            this.btn_settings.TabIndex = 13;
+            this.btn_settings.TabStop = false;
+            this.btn_settings.Click += new System.EventHandler(this.btn_settings_Click);
+            this.btn_settings.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseDown);
+            this.btn_settings.MouseEnter += new System.EventHandler(this.imgBtn_MouseEnter);
+            this.btn_settings.MouseLeave += new System.EventHandler(this.imgBtn_MouseLeave);
+            this.btn_settings.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseUp);
+            // 
+            // btn_launch
+            // 
+            this.btn_launch.BackColor = System.Drawing.Color.Transparent;
+            this.btn_launch.Image = global::FT_Launcher.Properties.Resources.btn_launch;
+            this.btn_launch.Location = new System.Drawing.Point(427, 525);
+            this.btn_launch.Name = "btn_launch";
+            this.btn_launch.Size = new System.Drawing.Size(108, 108);
+            this.btn_launch.TabIndex = 12;
+            this.btn_launch.TabStop = false;
+            this.btn_launch.EnabledChanged += new System.EventHandler(this.imgBtn_EnabledChanged);
+            this.btn_launch.Click += new System.EventHandler(this.ButtonLaunch_Click);
+            this.btn_launch.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseDown);
+            this.btn_launch.MouseEnter += new System.EventHandler(this.imgBtn_MouseEnter);
+            this.btn_launch.MouseLeave += new System.EventHandler(this.imgBtn_MouseLeave);
+            this.btn_launch.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imgBtn_MouseUp);
+            // 
+            // loadingBarGlow
+            // 
+            this.loadingBarGlow.BackColor = System.Drawing.Color.Transparent;
+            this.loadingBarGlow.Image = global::FT_Launcher.Properties.Resources.background_loading_glow;
+            this.loadingBarGlow.Location = new System.Drawing.Point(1, 602);
+            this.loadingBarGlow.Name = "loadingBarGlow";
+            this.loadingBarGlow.Size = new System.Drawing.Size(2, 37);
+            this.loadingBarGlow.TabIndex = 22;
+            this.loadingBarGlow.TabStop = false;
             // 
             // FormMain
             // 
@@ -407,10 +429,10 @@ namespace FT_Launcher
             this.Controls.Add(this.btn_ranking);
             this.Controls.Add(this.btn_settings);
             this.Controls.Add(this.btn_launch);
-            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.buttonCreateChecksum);
             this.Controls.Add(this.btn_close);
-            this.DoubleBuffered = true;
+            this.Controls.Add(this.loadingBarGlow);
+            this.Controls.Add(this.loadingBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
@@ -425,13 +447,15 @@ namespace FT_Launcher
             this.panelSettings.ResumeLayout(false);
             this.panelSettings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_close)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_launch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_settings)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_ranking)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_news)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_log)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_register)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loadingBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_discord)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_register)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_log)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_news)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_ranking)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_settings)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_launch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loadingBarGlow)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -445,7 +469,6 @@ namespace FT_Launcher
         private System.Windows.Forms.TextBox textBoxLog;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.Button buttonCreateChecksum;
-        private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Panel panelSettings;
         private System.ComponentModel.BackgroundWorker backgroundWorkerLaunch;
@@ -454,16 +477,19 @@ namespace FT_Launcher
         private System.Windows.Forms.RadioButton radioButtonUpdateUrl3;
         private System.Windows.Forms.RadioButton radioButtonUpdateUrl4;
         private System.Windows.Forms.RadioButton radioButtonUpdateUrl5;
-        private System.Windows.Forms.PictureBox btn_launch;
-        private System.Windows.Forms.PictureBox btn_discord;
-        private System.Windows.Forms.PictureBox btn_register;
-        private System.Windows.Forms.PictureBox btn_log;
-        private System.Windows.Forms.PictureBox btn_news;
-        private System.Windows.Forms.PictureBox btn_ranking;
-        private System.Windows.Forms.PictureBox btn_settings;
         private System.Windows.Forms.WebBrowser webBrowserPanel;
         private System.Windows.Forms.Label labelLanguage;
         private System.Windows.Forms.Timer delayedLoad;
+        private System.Windows.Forms.PictureBox loadingBar;
+        private TransparentPictureBox btn_launch;
+        private TransparentPictureBox btn_discord;
+        private TransparentPictureBox btn_register;
+        private TransparentPictureBox btn_log;
+        private TransparentPictureBox btn_news;
+        private TransparentPictureBox btn_ranking;
+        private TransparentPictureBox btn_settings;
+        private System.Windows.Forms.Timer timerLoadingBar;
+        private TransparentPictureBox loadingBarGlow;
     }
 }
 

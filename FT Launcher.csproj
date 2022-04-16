@@ -120,6 +120,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
+    <None Include="Resources\background_loading_glow.png" />
+    <None Include="Resources\background_loading.png" />
     <None Include="Resources\background.png" />
     <None Include="Resources\lang_thai.png" />
     <None Include="Resources\lang_japanese.png" />

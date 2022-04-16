@@ -42,15 +42,32 @@ namespace FT_Launcher {
         [DllImport("user32.dll")]
         static extern IntPtr CreateIconFromResourceEx(byte[] presbits, uint dwResSize, bool fIcon, uint dwVer, int cxDesired, int cyDesired, uint flags);
 
+        private static FormMain instance;
+
         private Patcher patcher = new Patcher();
         private HtmlElement webBrowserDocumentClickedElement;
         private List<DownloadUrlElement> downloadUrls;
+        private float progress = 0; //progress bar width ranging from 0-1 
 
         private SoundPlayer soundPlayerHover = new SoundPlayer(FT_Launcher.Properties.Resources.ui_mouse_over01);
         private SoundPlayer soundPlayerClick = new SoundPlayer(FT_Launcher.Properties.Resources.ui_mouse_click03);
 
         public FormMain() {
+            instance = this;
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Set loading bar progress
+        /// </summary>
+        /// <param name="current"></param>
+        /// <param name="max"></param>
+        public static void SetLoadingBarProgress(long current, long max = 0) {
+            if (max <= 0) {
+                instance.progress = current;
+            } else {
+                instance.progress = (float)current / (float)max;
+            }
         }
 
         /// <summary>
@@ -85,7 +102,7 @@ namespace FT_Launcher {
         private void BackgroundWorkerLaunch_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e) {
             if (e.Error != null) {
                 Logger.Error(e.Error.Message);
-                Logger.Progress(0);
+                SetLoadingBarProgress(0);
                 btn_log_Click(btn_log, null);
             }
             btn_launch.Enabled = true;
@@ -130,7 +147,6 @@ namespace FT_Launcher {
             HidePanels();
 
             Logger.TextBoxLog = textBoxLog;
-            Logger.ProgressBar = progressBar;
 
             //Load animated cursor
             byte[] cursorRes = Properties.Resources.cursor;
@@ -385,6 +401,30 @@ namespace FT_Launcher {
             btn_news_Click(btn_news, null);
             webBrowserPanel.Navigate(Settings.GetSetting("panelUrl", "about:blank"));
             ((Timer)sender).Enabled = false;
+        }
+
+        private void timerLoadingBar_Tick(object sender, EventArgs e) {
+            const int loadingBarMaxWidth = 960;
+
+            int newLoadingBarWidth = Convert.ToInt32((float)loadingBarMaxWidth * progress);
+            if (newLoadingBarWidth != loadingBar.Width) {
+                loadingBar.Width = newLoadingBarWidth;
+
+                if (progress == 0 || progress == 1) {
+                    loadingBarGlow.Visible = false;
+                } else {
+                    loadingBarGlow.Visible = true;
+                    loadingBarGlow.Left = loadingBar.Left + loadingBar.Width - loadingBarGlow.Width;
+                }
+
+                btn_discord.Invalidate();
+                btn_launch.Invalidate();
+                btn_log.Invalidate();
+                btn_news.Invalidate();
+                btn_ranking.Invalidate();
+                btn_register.Invalidate();
+                btn_settings.Invalidate();
+            }
         }
     }
 }
