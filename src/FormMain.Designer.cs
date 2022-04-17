@@ -271,7 +271,7 @@ namespace FT_Launcher
             this.webBrowserPanel.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowserPanel.Name = "webBrowserPanel";
             this.webBrowserPanel.ScriptErrorsSuppressed = true;
-            this.webBrowserPanel.Size = new System.Drawing.Size(252, 400);
+            this.webBrowserPanel.Size = new System.Drawing.Size(250, 400);
             this.webBrowserPanel.TabIndex = 20;
             // 
             // delayedLoad
