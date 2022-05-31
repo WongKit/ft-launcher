@@ -163,7 +163,6 @@ namespace FT_Launcher {
             byte[] cursorRes = Properties.Resources.cursor;
             this.Cursor = new Cursor(CreateIconFromResourceEx(cursorRes, (uint)cursorRes.Length, false, 0x00030000, 49, 49, 0x00000000));
 
-        
             //Add drop shadow to form
             try {
                 (new DropShadow()).ApplyShadows(this);

@@ -35,6 +35,11 @@ class Patcher {
 
     public bool RequiresRestart { get;  private set; }
 
+    public Patcher() {
+        //Set TLS 1.2 (SecurityProtocolType.Tls12 in .NET 4.5+) as default protocol for HTTPS communication
+        ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+    }
+
     /// <summary>
     /// Main launcher method that executes the following steps
     /// - Download the files.md5 file from a remote server
@@ -290,13 +295,13 @@ class Patcher {
                 try {
                     content = webClient.DownloadString(checksumFile);
                     break;
-                } catch (Exception) {
+                } catch (Exception ex) {
                     if (retryCount < retryMax) {
                         Logger.Write("Could not get remote checksum file. Try again...");
                         Thread.Sleep(retryWait);
                         retryCount++;
                     } else {
-                        throw new WebException("Could not get remote checksum file: " + checksumFile);
+                        throw new WebException("Could not get remote checksum file: " + checksumFile + " " + ex.Message);
                     }
                 }
             }
