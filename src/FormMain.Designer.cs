@@ -142,13 +142,16 @@ namespace FT_Launcher
             // 
             // buttonCreateChecksum
             // 
-            this.buttonCreateChecksum.Location = new System.Drawing.Point(832, 572);
+            this.buttonCreateChecksum.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonCreateChecksum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCreateChecksum.Location = new System.Drawing.Point(837, 549);
             this.buttonCreateChecksum.Name = "buttonCreateChecksum";
-            this.buttonCreateChecksum.Size = new System.Drawing.Size(111, 25);
+            this.buttonCreateChecksum.Size = new System.Drawing.Size(111, 50);
             this.buttonCreateChecksum.TabIndex = 6;
             this.buttonCreateChecksum.Text = "Create Checksum";
-            this.buttonCreateChecksum.UseVisualStyleBackColor = true;
+            this.buttonCreateChecksum.UseVisualStyleBackColor = false;
             this.buttonCreateChecksum.Click += new System.EventHandler(this.ButtonCreateChecksum_Click);
+            this.buttonCreateChecksum.MouseEnter += new System.EventHandler(this.ButtonCreateChecksum_MouseEnter);
             // 
             // errorProvider1
             // 

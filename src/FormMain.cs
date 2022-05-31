@@ -124,6 +124,17 @@ namespace FT_Launcher {
                     Logger.Error(ex.Message);
                 }
             }
+
+            buttonCreateChecksum.Enabled = true;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonCreateChecksum_MouseEnter(object sender, EventArgs e) {
+            soundPlayerHover.Play();
         }
 
         /// <summary>
