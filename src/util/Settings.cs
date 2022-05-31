@@ -37,9 +37,14 @@ namespace FT_Launcher {
                 downloadUrls.Add(legacyConfig);
             }
             
-            CustomConfigSection customConfigSection = (CustomConfigSection)ConfigurationManager.GetSection("customConfigSection");
-            DownloadUrlElementCollection nodeList = customConfigSection.NodeList;
-            downloadUrls.AddRange(nodeList.Cast<DownloadUrlElement>());
+            try {
+                CustomConfigSection customConfigSection = (CustomConfigSection)ConfigurationManager.GetSection("customConfigSection");
+                DownloadUrlElementCollection nodeList = customConfigSection.NodeList;
+                downloadUrls.AddRange(nodeList.Cast<DownloadUrlElement>());
+
+            } catch (ConfigurationErrorsException) {
+                throw new Exception("Could not read program settings.\nMake sure that the FT_Launcher.exe.config file is in the same directory.");
+            }
 
             return downloadUrls;
         }
@@ -53,7 +58,7 @@ namespace FT_Launcher {
         public static string GetSetting(string key) {
             string value = GetSetting(key, null);
             if (value == null) {
-                throw new Exception("Mandatory setting \"" + key + "\" not found");
+                throw new Exception("Mandatory setting \"" + key + "\" not found.\nPlease check the FT_Launcher.exe.config file.");
             } else {
                 return value;
             }

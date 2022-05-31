@@ -54,7 +54,7 @@ class Patcher {
         List<Checksum> checksums = ReadChecksumFile(downloadUrl + "files.md5");
 
         if (checksums.Count == 0) {
-            throw new Exception("Could not contact update server");
+            throw new Exception("Could not contact update server.\nMake sure, that internet access is available for this program.");
 
         } else {
             Logger.Write("Checking for updates...");
@@ -195,7 +195,7 @@ class Patcher {
                         try {
                             File.Move(targetFile, backupFile);
                         } catch (Exception) {
-                            throw new Exception("Could not patch file \"" + checksum.path + "\". Maybe it is still in use");
+                            throw new Exception("Could not patch file \"" + checksum.path + "\".\nMaybe it is still opened by another program.");
                         }
                     }
                 }

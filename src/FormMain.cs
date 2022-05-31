@@ -54,7 +54,7 @@ namespace FT_Launcher {
 
         public FormMain() {
             instance = this;
-            InitializeComponent();
+            InitializeComponent();             
         }
 
         /// <summary>
@@ -193,7 +193,6 @@ namespace FT_Launcher {
             if (ModifierKeys == Keys.Shift) {
             } else {
                 buttonCreateChecksum.Visible = false;
-                //progressBar.Width = 569;
             }
 
             this.Text = Settings.GetSetting("title", "FT Launcher");
@@ -201,6 +200,8 @@ namespace FT_Launcher {
 
             Logger.Write("Application startup");
             ParseCommandLineArguments();
+
+            delayedLoad.Enabled = true;
         }
 
 

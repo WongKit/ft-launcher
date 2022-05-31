@@ -279,7 +279,6 @@ namespace FT_Launcher
             // 
             // delayedLoad
             // 
-            this.delayedLoad.Enabled = true;
             this.delayedLoad.Interval = 500;
             this.delayedLoad.Tick += new System.EventHandler(this.delayedLoad_Tick);
             // 

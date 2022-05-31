@@ -17,6 +17,7 @@
  */
 
 using System;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace FT_Launcher {
@@ -27,17 +28,29 @@ namespace FT_Launcher {
         /// </summary>
         [STAThread]
         static void Main() {
+
+            Application.ThreadException += new ThreadExceptionEventHandler(ThreadException);
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhadledException);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormMain());
         }
 
-        static void UnhadledException(object sender, UnhandledExceptionEventArgs args) {
-            Exception e = (Exception)args.ExceptionObject;
-            string error = e.Message + "\n" + e.StackTrace;
-            Console.WriteLine(error);
-            MessageBox.Show(error);
+        static void ExceptionExit(Exception e) {
+            MessageBox.Show(null, e.Message, "Oopsie...", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            Environment.Exit(1);
         }
+
+        static void ThreadException(object sender, ThreadExceptionEventArgs args) {
+            ExceptionExit(args.Exception);
+        }
+
+        static void UnhadledException(object sender, UnhandledExceptionEventArgs args) {
+            ExceptionExit((Exception)args.ExceptionObject);
+        }
+
+
     }
 }
