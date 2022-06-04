@@ -291,6 +291,14 @@ namespace FT_Launcher {
             }
         }
 
+        private Uri toUri(string path) {
+            if (String.IsNullOrEmpty(path) || path.Contains("://") || path.Contains(":\\") || path.Contains("about:") ) {
+                return new Uri(path);
+            } else {
+                return new Uri(Application.StartupPath + "\\" + path);
+            }
+        }
+
         /// <summary>
         /// Register mouse down event for the loaded web document. It is required to remember the clicked link
         /// </summary>
@@ -365,7 +373,7 @@ namespace FT_Launcher {
         private void btn_news_Click(object sender, EventArgs e) {
             HidePanels();
             panelNews.Visible = true;
-            webBrowserNews.Navigate(Settings.GetSetting("newsUrl", "about:blank"));
+            webBrowserNews.Navigate(toUri(Settings.GetSetting("newsUrl", "about:blank")));
         }
 
         private void btn_settings_Click(object sender, EventArgs e) {
@@ -391,7 +399,7 @@ namespace FT_Launcher {
         private void btn_ranking_Click(object sender, EventArgs e) {
             HidePanels();
             panelNews.Visible = true;
-            webBrowserNews.Navigate(Settings.GetSetting("rankingUrl", "about:blank"));
+            webBrowserNews.Navigate(toUri(Settings.GetSetting("rankingUrl", "about:blank")));
         }
 
         private void imgBtn_EnabledChanged(object sender, EventArgs e) {
@@ -400,7 +408,7 @@ namespace FT_Launcher {
                 imgBtn_MouseLeave(sender, null);
             } else {
                 imgBtn_MouseDown(sender, null);
-            }              
+            }
         }
 
         /// <summary>
@@ -410,7 +418,7 @@ namespace FT_Launcher {
         /// <param name="e"></param>
         private void delayedLoad_Tick(object sender, EventArgs e) {
             btn_news_Click(btn_news, null);
-            webBrowserPanel.Navigate(Settings.GetSetting("panelUrl", "about:blank"));
+            webBrowserPanel.Navigate(toUri(Settings.GetSetting("panelUrl", "about:blank")));
             ((Timer)sender).Enabled = false;
         }
 
