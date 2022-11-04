@@ -176,7 +176,7 @@ namespace FT_Launcher
             this.labelLanguage.AutoSize = true;
             this.labelLanguage.Location = new System.Drawing.Point(259, 116);
             this.labelLanguage.Name = "labelLanguage";
-            this.labelLanguage.Size = new System.Drawing.Size(173, 17);
+            this.labelLanguage.Size = new System.Drawing.Size(131, 13);
             this.labelLanguage.TabIndex = 5;
             this.labelLanguage.Text = "Select the audio language";
             // 
@@ -213,7 +213,7 @@ namespace FT_Launcher
             this.radioButtonUpdateUrl3.AutoSize = true;
             this.radioButtonUpdateUrl3.Location = new System.Drawing.Point(274, 297);
             this.radioButtonUpdateUrl3.Name = "radioButtonUpdateUrl3";
-            this.radioButtonUpdateUrl3.Size = new System.Drawing.Size(149, 21);
+            this.radioButtonUpdateUrl3.Size = new System.Drawing.Size(116, 17);
             this.radioButtonUpdateUrl3.TabIndex = 2;
             this.radioButtonUpdateUrl3.TabStop = true;
             this.radioButtonUpdateUrl3.Text = "Download Server 3";
@@ -225,7 +225,7 @@ namespace FT_Launcher
             this.radioButtonUpdateUrl5.AutoSize = true;
             this.radioButtonUpdateUrl5.Location = new System.Drawing.Point(274, 343);
             this.radioButtonUpdateUrl5.Name = "radioButtonUpdateUrl5";
-            this.radioButtonUpdateUrl5.Size = new System.Drawing.Size(149, 21);
+            this.radioButtonUpdateUrl5.Size = new System.Drawing.Size(116, 17);
             this.radioButtonUpdateUrl5.TabIndex = 4;
             this.radioButtonUpdateUrl5.TabStop = true;
             this.radioButtonUpdateUrl5.Text = "Download Server 5";
@@ -237,7 +237,7 @@ namespace FT_Launcher
             this.radioButtonUpdateUrl4.AutoSize = true;
             this.radioButtonUpdateUrl4.Location = new System.Drawing.Point(274, 320);
             this.radioButtonUpdateUrl4.Name = "radioButtonUpdateUrl4";
-            this.radioButtonUpdateUrl4.Size = new System.Drawing.Size(149, 21);
+            this.radioButtonUpdateUrl4.Size = new System.Drawing.Size(116, 17);
             this.radioButtonUpdateUrl4.TabIndex = 3;
             this.radioButtonUpdateUrl4.TabStop = true;
             this.radioButtonUpdateUrl4.Text = "Download Server 4";
@@ -302,7 +302,7 @@ namespace FT_Launcher
             // 
             this.btn_discord.BackColor = System.Drawing.Color.Transparent;
             this.btn_discord.Image = global::FT_Launcher.Properties.Resources.btn_discord;
-            this.btn_discord.Location = new System.Drawing.Point(628, 540);
+            this.btn_discord.Location = new System.Drawing.Point(618, 540);
             this.btn_discord.Name = "btn_discord";
             this.btn_discord.Size = new System.Drawing.Size(66, 92);
             this.btn_discord.TabIndex = 18;
@@ -317,7 +317,7 @@ namespace FT_Launcher
             // 
             this.btn_register.BackColor = System.Drawing.Color.Transparent;
             this.btn_register.Image = global::FT_Launcher.Properties.Resources.btn_register;
-            this.btn_register.Location = new System.Drawing.Point(551, 540);
+            this.btn_register.Location = new System.Drawing.Point(541, 540);
             this.btn_register.Name = "btn_register";
             this.btn_register.Size = new System.Drawing.Size(66, 92);
             this.btn_register.TabIndex = 17;
@@ -332,7 +332,7 @@ namespace FT_Launcher
             // 
             this.btn_log.BackColor = System.Drawing.Color.Transparent;
             this.btn_log.Image = global::FT_Launcher.Properties.Resources.btn_log;
-            this.btn_log.Location = new System.Drawing.Point(264, 540);
+            this.btn_log.Location = new System.Drawing.Point(274, 540);
             this.btn_log.Name = "btn_log";
             this.btn_log.Size = new System.Drawing.Size(66, 92);
             this.btn_log.TabIndex = 16;
@@ -347,7 +347,7 @@ namespace FT_Launcher
             // 
             this.btn_news.BackColor = System.Drawing.Color.Transparent;
             this.btn_news.Image = global::FT_Launcher.Properties.Resources.btn_news;
-            this.btn_news.Location = new System.Drawing.Point(182, 540);
+            this.btn_news.Location = new System.Drawing.Point(192, 540);
             this.btn_news.Name = "btn_news";
             this.btn_news.Size = new System.Drawing.Size(66, 92);
             this.btn_news.TabIndex = 15;
@@ -362,7 +362,7 @@ namespace FT_Launcher
             // 
             this.btn_settings.BackColor = System.Drawing.Color.Transparent;
             this.btn_settings.Image = global::FT_Launcher.Properties.Resources.btn_settings;
-            this.btn_settings.Location = new System.Drawing.Point(344, 540);
+            this.btn_settings.Location = new System.Drawing.Point(354, 540);
             this.btn_settings.Name = "btn_settings";
             this.btn_settings.Size = new System.Drawing.Size(66, 92);
             this.btn_settings.TabIndex = 13;
@@ -377,9 +377,9 @@ namespace FT_Launcher
             // 
             this.btn_launch.BackColor = System.Drawing.Color.Transparent;
             this.btn_launch.Image = global::FT_Launcher.Properties.Resources.btn_launch;
-            this.btn_launch.Location = new System.Drawing.Point(427, 525);
+            this.btn_launch.Location = new System.Drawing.Point(432, 525);
             this.btn_launch.Name = "btn_launch";
-            this.btn_launch.Size = new System.Drawing.Size(108, 108);
+            this.btn_launch.Size = new System.Drawing.Size(98, 110);
             this.btn_launch.TabIndex = 12;
             this.btn_launch.TabStop = false;
             this.btn_launch.EnabledChanged += new System.EventHandler(this.imgBtn_EnabledChanged);
@@ -403,7 +403,7 @@ namespace FT_Launcher
             // 
             this.btn_exit.BackColor = System.Drawing.Color.Transparent;
             this.btn_exit.Image = global::FT_Launcher.Properties.Resources.btn_exit;
-            this.btn_exit.Location = new System.Drawing.Point(708, 540);
+            this.btn_exit.Location = new System.Drawing.Point(698, 540);
             this.btn_exit.Name = "btn_exit";
             this.btn_exit.Size = new System.Drawing.Size(66, 92);
             this.btn_exit.TabIndex = 23;
